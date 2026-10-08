@@ -37,8 +37,8 @@ Steps (one file each in `pipeline/`): `fetch_pois` (OSM Overpass) → `fetch_wik
 
 ## iOS
 
-See [docs/xcode-setup.md](docs/xcode-setup.md).
+The app in `ios/WalkAndTalk` bundles `tours/mexicali` and plays each stop's story once as you walk into its radius, offline and with the screen locked. First-time Xcode setup: [docs/xcode-setup.md](docs/xcode-setup.md). Tests, GPX simulation, and the field test: [docs/walk-test.md](docs/walk-test.md).
 
 ## Status
 
-Day 1: toolchain smoke test. Tour generation and location triggers coming next.
+Tour pack pipeline done (Mexicali, 12 stops). iOS walk loop built: proximity triggers, queued audio, background location. Next: field test.
