@@ -1,0 +1,62 @@
+[
+  {
+    "id": "node/13648432432",
+    "audio": "audio/01-el-cocinero-chino.m4a",
+    "duration_s": 32.6
+  },
+  {
+    "id": "way/1373216643",
+    "audio": "audio/02-museo-del-agua-cespm.m4a",
+    "duration_s": 13.4
+  },
+  {
+    "id": "node/14013779386",
+    "audio": "audio/03-cinema-curto.m4a",
+    "duration_s": 8.5
+  },
+  {
+    "id": "way/1373216639",
+    "audio": "audio/04-teatro-lux-1934.m4a",
+    "duration_s": 12.8
+  },
+  {
+    "id": "way/558315991",
+    "audio": "audio/05-catedral-de-nuestra-senora-de-guadalupe.m4a",
+    "duration_s": 32.1
+  },
+  {
+    "id": "node/14016739610",
+    "audio": "audio/06-maromero-paez.m4a",
+    "duration_s": 7.9
+  },
+  {
+    "id": "way/1028508444",
+    "audio": "audio/07-iglesia-metodista-templo-el-divino-reden.m4a",
+    "duration_s": 12.0
+  },
+  {
+    "id": "way/1373477864",
+    "audio": "audio/08-museo-wok.m4a",
+    "duration_s": 11.8
+  },
+  {
+    "id": "node/14013525935",
+    "audio": "audio/09-cimaleon.m4a",
+    "duration_s": 14.2
+  },
+  {
+    "id": "way/169521599",
+    "audio": "audio/10-ninos-heroes-de-chapultepec-1915.m4a",
+    "duration_s": 11.6
+  },
+  {
+    "id": "node/12720568409",
+    "audio": "audio/11-forjador-de-ilusiones.m4a",
+    "duration_s": 9.0
+  },
+  {
+    "id": "way/193808892",
+    "audio": "audio/12-plaza-del-mariachi.m4a",
+    "duration_s": 9.9
+  }
+]

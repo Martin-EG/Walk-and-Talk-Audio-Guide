@@ -1,0 +1,50 @@
+=== 2026-10-08T07:52:11  route=mexicali lat=32.661938 lon=-115.489149 radius=500 lang=en cache=on
+models: gemma3:4b (Ollama), en_US-lessac-medium (Piper)
+fetch_pois         0.0 s   cache 1 hits / 0 misses
+fetch_wiki         0.0 s   cache 55 hits / 0 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories      0.0 s   cache 19 hits / 0 misses
+narrate            1.0 s   cache 12 hits / 0 misses
+total              1.0 s
+stops: 12, audio: 322 s total, avg story 86 words
+
+=== 2026-10-08T07:52:51  route=mexicali lat=32.661938 lon=-115.489149 radius=500 lang=en cache=on
+models: gemma3:4b (Ollama), en_US-lessac-medium (Piper)
+fetch_pois         0.0 s   cache 1 hits / 0 misses
+fetch_wiki         0.0 s   cache 55 hits / 0 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories      0.0 s   cache 19 hits / 0 misses
+narrate            0.9 s   cache 12 hits / 0 misses
+total              1.0 s
+stops: 12, audio: 322 s total, avg story 86 words
+
+=== 2026-10-08T07:54:40  route=mexicali lat=32.661938 lon=-115.489149 radius=500 lang=en cache=on
+models: gemma3:4b (Ollama), en_US-lessac-medium (Piper)
+fetch_pois         0.0 s   cache 1 hits / 0 misses
+fetch_wiki         0.0 s   cache 55 hits / 0 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories     34.7 s   cache 2 hits / 19 misses
+narrate            8.5 s   cache 2 hits / 10 misses
+total             43.2 s
+stops: 12, audio: 211 s total, avg story 54 words
+
+=== 2026-10-08T07:55:37  route=mexicali lat=32.661938 lon=-115.489149 radius=500 lang=en cache=on
+models: gemma3:4b (Ollama), en_US-lessac-medium (Piper)
+fetch_pois         0.0 s   cache 1 hits / 0 misses
+fetch_wiki         0.0 s   cache 55 hits / 0 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories     31.7 s   cache 3 hits / 15 misses
+narrate           10.6 s   cache 2 hits / 10 misses
+total             42.4 s
+stops: 12, audio: 194 s total, avg story 50 words
+
+=== 2026-10-08T08:09:56  route=mexicali lat=32.661938 lon=-115.489149 radius=500 lang=en cache=on
+models: gemma3:4b + gemma3:12b for thin stops (Ollama), en_US-lessac-medium (Piper)
+fetch_pois         0.0 s   cache 1 hits / 0 misses
+fetch_wiki         0.0 s   cache 55 hits / 0 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories    128.3 s   cache 3 hits / 12 misses
+narrate           31.5 s   cache 2 hits / 10 misses
+total            159.8 s
+stops: 12, audio: 176 s total, avg story 49 words
+

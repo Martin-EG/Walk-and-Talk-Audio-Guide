@@ -27,6 +27,14 @@ python pipeline/check_env.py
 
 Settings live in `pipeline/config.py`.
 
+## Build a tour pack
+
+```bash
+python pipeline/build_tour.py --route mexicali --lat 32.661938 --lon -115.489149 --radius 500 --lang en --exclude way/423032194
+```
+
+Steps (one file each in `pipeline/`): `fetch_pois` (OSM Overpass) → `fetch_wiki` (Wikipedia summaries) → `rank` (8–12 stops, walking loop) → `write_stories` (Gemma) → `narrate` (Piper → .m4a). Output goes to `tours/<route>/` (`tour.json`, `audio/`, `build_log.txt`); working files and `review.md` (each story next to its facts) go to `pipeline/work/<route>/`. Every network, LLM, and TTS call is cached in `pipeline/cache/`, so reruns take seconds; `--no-cache` rebuilds from scratch. `python pipeline/validate_tour.py tours/<route>/tour.json` checks the pack.
+
 ## iOS
 
 See [docs/xcode-setup.md](docs/xcode-setup.md).

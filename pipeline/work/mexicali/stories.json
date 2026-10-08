@@ -1,0 +1,183 @@
+[
+  {
+    "id": "node/13648432432",
+    "story": "Look up at the monument. In front of you stands El cocinero chino. This sculpture, created by Óscar Ortega, celebrates the immigration of Chinese people to Mexicali. It’s a tribute to the best Chinese cuisine in the world. A surprising fact: the sculpture cost approximately 10 million pesos. The Government of Baja California and private companies paid for it. It’s located at the entrance to La Chinesca, a neighborhood with a high concentration of Chinese residents. La Chinesca is a historic area where Chinese people have lived and worked since the beginning of the 20th century.",
+    "words": 96,
+    "attempts": 2,
+    "thin_facts": false,
+    "model": "gemma3:4b",
+    "problems": [],
+    "check_names": [
+      "Chinese",
+      "Government"
+    ],
+    "facts": "Name: El cocinero chino\nOpenStreetMap tags: historic=monument; inscription=MEXICALI\nLa mejor cocina china del mundo.\nShort description: monument in Mexicali, Mexico\nWikipedia (es): El cocinero chino es un monumento dedicado a la inmigración china a la ciudad de Mexicali, México. Es obra del escultor Óscar Ortega y fue inaugurada en 2025. Se encuentra en la entrada de la zona conocida como La Chinesca, en el cruce de las calles bulevar Adolfo López Mateos y la calle Juárez. La escultura de 23 metros de altura y hecha en concreto representa a un cocinero que sostiene en la mano izquierda una caja de comida china como homenaje a dicha gastronomía que se ha constituido como un referente cultural mexicalense. Tuvo un costo aproximado de 10 millones de pesos pagados por el Gobierno del Estado de Baja California y empresas privadas.\nNearby area, NOT this place (La Chinesca (barrio chino de Mexicali), Wikipedia es): La Chinesca es una zona en el centro histórico de la ciudad de Mexicali, en Baja California, México donde han habitado, vivido, comerciado y construido habitantes de origen chino desde inicios del siglo XX. Esta zona de México, es la que cuenta con mayor concentración per cápita de residentes de origen chino en el Municipio de Mexicali y muy probablemente de todo México; se estima una población de 5,000 personas, que desde los albores del siglo XX y la fundación de la ciudad de Mexicali inmigraron chinos traídos de Estados Unidos como peones para conquistar estas tierras, por lo que la presenc",
+    "sources": [
+      "https://www.openstreetmap.org/node/13648432432",
+      "https://es.wikipedia.org/wiki/El_cocinero_chino",
+      "https://es.wikipedia.org/wiki/La_Chinesca_(barrio_chino_de_Mexicali)"
+    ]
+  },
+  {
+    "id": "way/1373216643",
+    "story": "Look at this building. You stand before the Museo del Agua CESPM. It is a museum. You can see it is open for visitors. Notice the details of its facade. Consider the people who designed it. Perhaps you will go inside. Take a look around.",
+    "words": 45,
+    "attempts": 2,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Museo del Agua CESPM\nOpenStreetMap tags: tourism=museum",
+    "sources": [
+      "https://www.openstreetmap.org/way/1373216643"
+    ]
+  },
+  {
+    "id": "node/14013779386",
+    "story": "Look at the Cinema Curto in front of you. You see a theatre. It is a place where performances take place. You can observe the building. It is a theatre. Take a look.",
+    "words": 33,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Cinema Curto\nOpenStreetMap tags: amenity=theatre",
+    "sources": [
+      "https://www.openstreetmap.org/node/14013779386"
+    ]
+  },
+  {
+    "id": "way/1373216639",
+    "story": "Look at the Teatro Lux 1934. You stand before a theatre. It opened in 1934. You can see the building’s facade. It is a place for performances. Take a look at the Teatro Lux 1934.",
+    "words": 35,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Teatro Lux 1934\nOpenStreetMap tags: amenity=theatre; start_date=1934",
+    "sources": [
+      "https://www.openstreetmap.org/way/1373216639"
+    ]
+  },
+  {
+    "id": "way/558315991",
+    "story": "Look up at the towering structure before you. You stand in front of the Catedral de Nuestra Señora de Guadalupe, a place of worship dedicated to the Virgin of Guadalupe. It’s the cathedral, the seat of the Diocese of Mexicali, located in the city of Mexicali, the capital of Baja California. Nearby, you can see La Chinesca, a zone with a high concentration of residents of Chinese origin. This area, established in the early 20th century, was formed by Chinese immigrants brought from the United States to work the land. It’s estimated that 5,000 people live there today.",
+    "words": 98,
+    "attempts": 1,
+    "thin_facts": false,
+    "model": "gemma3:4b",
+    "problems": [],
+    "check_names": [
+      "Virgin",
+      "Diocese",
+      "Chinese",
+      "United",
+      "States"
+    ],
+    "facts": "Name: Catedral de Nuestra Señora de Guadalupe\nOpenStreetMap tags: addr:city=Mexicali; addr:street=Calle José María Morelos Y Pavón; amenity=place_of_worship; denomination=catholic; religion=christian\nWikipedia (es): La Catedral de Mexicali, oficialmente Catedral de Nuestra Señora de Guadalupe es una templo católico dedicado a la Virgen de Guadalupe, elevado al rango de catedral, siendo sede de la diócesis de Mexicali. Está ubicada en la ciudad de Mexicali, capital del estado de Baja California.\nNearby area, NOT this place (La Chinesca (barrio chino de Mexicali), Wikipedia es): La Chinesca es una zona en el centro histórico de la ciudad de Mexicali, en Baja California, México donde han habitado, vivido, comerciado y construido habitantes de origen chino desde inicios del siglo XX. Esta zona de México, es la que cuenta con mayor concentración per cápita de residentes de origen chino en el Municipio de Mexicali y muy probablemente de todo México; se estima una población de 5,000 personas, que desde los albores del siglo XX y la fundación de la ciudad de Mexicali inmigraron chinos traídos de Estados Unidos como peones para conquistar estas tierras, por lo que la presenc",
+    "sources": [
+      "https://www.openstreetmap.org/way/558315991",
+      "https://es.wikipedia.org/wiki/Catedral_de_Mexicali",
+      "https://es.wikipedia.org/wiki/La_Chinesca_(barrio_chino_de_Mexicali)"
+    ]
+  },
+  {
+    "id": "node/14016739610",
+    "story": "Look at the wall in front of you. You see Maromero Paez. It is a mural. People visit this place to see it. You can take a look at the artwork.",
+    "words": 31,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Maromero Paez\nOpenStreetMap tags: artwork_type=mural; tourism=artwork",
+    "sources": [
+      "https://www.openstreetmap.org/node/14016739610"
+    ]
+  },
+  {
+    "id": "way/1028508444",
+    "story": "Look up at the Iglesia Metodista Templo El Divino Redentor. You see a place of worship. It is a Christian church. Take a look at the building before you. It stands as a place for people to gather. You can see it right here.",
+    "words": 44,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Iglesia Metodista Templo El Divino Redentor\nOpenStreetMap tags: amenity=place_of_worship; religion=christian",
+    "sources": [
+      "https://www.openstreetmap.org/way/1028508444"
+    ]
+  },
+  {
+    "id": "way/1373477864",
+    "story": "Look across the street at Museo Wok. You see a museum in Mexicali, Mexico. It is a place for tourism. Notice the building’s presence here. Consider what might be inside. Perhaps you will visit. Take a look.",
+    "words": 37,
+    "attempts": 2,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Museo Wok\nOpenStreetMap tags: tourism=museum\nShort description: museum in Mexicali, Mexico",
+    "sources": [
+      "https://www.openstreetmap.org/way/1373477864"
+    ]
+  },
+  {
+    "id": "node/14013525935",
+    "story": "Look up at the sculpture before you. You see a metal artwork called CimaLeón. The artist is Jaime Carbó. It is a statue, and it is marked as a place of interest for tourism. Take a look at the form of the piece. It is a work of art, and you are standing right next to it.",
+    "words": 57,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: CimaLeón\nOpenStreetMap tags: artist_name=Jaime Carbó; artwork_type=statue; material=metal; tourism=artwork",
+    "sources": [
+      "https://www.openstreetmap.org/node/14013525935"
+    ]
+  },
+  {
+    "id": "way/169521599",
+    "story": "Look around at the open space before you. You are standing in Niños Heroes de Chapultepec 1915. It is a park. Take a look at the area; you can see it extends quite a bit. It is a place for leisure.",
+    "words": 41,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Niños Heroes de Chapultepec 1915\nOpenStreetMap tags: leisure=park",
+    "sources": [
+      "https://www.openstreetmap.org/way/169521599"
+    ]
+  },
+  {
+    "id": "node/12720568409",
+    "story": "Look at the sculpture in front of you. You see Forjador de Ilusiones. It is an artwork. People visit this place as a tourist attraction. You can take a look at the sculpture.",
+    "words": 33,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Forjador de Ilusiones\nOpenStreetMap tags: artwork_type=sculpture; tourism=artwork",
+    "sources": [
+      "https://www.openstreetmap.org/node/12720568409"
+    ]
+  },
+  {
+    "id": "way/193808892",
+    "story": "Look around at Plaza del Mariachi. You see a park. It is a place for leisure. Take a look at the space around you. You can see the park extends in all directions. It is a place to be.",
+    "words": 39,
+    "attempts": 1,
+    "thin_facts": true,
+    "model": "gemma3:12b",
+    "problems": [],
+    "check_names": [],
+    "facts": "Name: Plaza del Mariachi\nOpenStreetMap tags: leisure=park",
+    "sources": [
+      "https://www.openstreetmap.org/way/193808892"
+    ]
+  }
+]

@@ -28,3 +28,6 @@ xcuserdata/
 *.dSYM.zip
 *.dSYM
 .swiftpm/
+
+# Pipeline cache (HTTP, LLM, TTS responses)
+pipeline/cache/

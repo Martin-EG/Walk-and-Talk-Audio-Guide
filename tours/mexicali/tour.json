@@ -1,0 +1,188 @@
+{
+  "route": "mexicali",
+  "language": "en",
+  "center": {
+    "lat": 32.661938,
+    "lon": -115.489149
+  },
+  "radius_m": 500,
+  "generated_at": "2026-10-08T08:09:56",
+  "models": {
+    "story": "gemma3:4b + gemma3:12b for thin stops (Ollama)",
+    "voice": "en_US-lessac-medium (Piper)"
+  },
+  "stops": [
+    {
+      "id": "node/13648432432",
+      "name": "El cocinero chino",
+      "lat": 32.661753,
+      "lon": -115.4897029,
+      "radius_m": 35,
+      "audio": "audio/01-el-cocinero-chino.m4a",
+      "duration_s": 32.6,
+      "story": "Look up at the monument. In front of you stands El cocinero chino. This sculpture, created by Óscar Ortega, celebrates the immigration of Chinese people to Mexicali. It’s a tribute to the best Chinese cuisine in the world. A surprising fact: the sculpture cost approximately 10 million pesos. The Government of Baja California and private companies paid for it. It’s located at the entrance to La Chinesca, a neighborhood with a high concentration of Chinese residents. La Chinesca is a historic area where Chinese people have lived and worked since the beginning of the 20th century.",
+      "thin_facts": false,
+      "sources": [
+        "https://www.openstreetmap.org/node/13648432432",
+        "https://es.wikipedia.org/wiki/El_cocinero_chino",
+        "https://es.wikipedia.org/wiki/La_Chinesca_(barrio_chino_de_Mexicali)"
+      ]
+    },
+    {
+      "id": "way/1373216643",
+      "name": "Museo del Agua CESPM",
+      "lat": 32.6623474,
+      "lon": -115.4882439,
+      "radius_m": 35,
+      "audio": "audio/02-museo-del-agua-cespm.m4a",
+      "duration_s": 13.4,
+      "story": "Look at this building. You stand before the Museo del Agua CESPM. It is a museum. You can see it is open for visitors. Notice the details of its facade. Consider the people who designed it. Perhaps you will go inside. Take a look around.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/1373216643"
+      ]
+    },
+    {
+      "id": "node/14013779386",
+      "name": "Cinema Curto",
+      "lat": 32.6630576,
+      "lon": -115.4877887,
+      "radius_m": 35,
+      "audio": "audio/03-cinema-curto.m4a",
+      "duration_s": 8.5,
+      "story": "Look at the Cinema Curto in front of you. You see a theatre. It is a place where performances take place. You can observe the building. It is a theatre. Take a look.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/node/14013779386"
+      ]
+    },
+    {
+      "id": "way/1373216639",
+      "name": "Teatro Lux 1934",
+      "lat": 32.6639122,
+      "lon": -115.4887468,
+      "radius_m": 35,
+      "audio": "audio/04-teatro-lux-1934.m4a",
+      "duration_s": 12.8,
+      "story": "Look at the Teatro Lux 1934. You stand before a theatre. It opened in 1934. You can see the building’s facade. It is a place for performances. Take a look at the Teatro Lux 1934.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/1373216639"
+      ]
+    },
+    {
+      "id": "way/558315991",
+      "name": "Catedral de Nuestra Señora de Guadalupe",
+      "lat": 32.6632272,
+      "lon": -115.489506,
+      "radius_m": 35,
+      "audio": "audio/05-catedral-de-nuestra-senora-de-guadalupe.m4a",
+      "duration_s": 32.1,
+      "story": "Look up at the towering structure before you. You stand in front of the Catedral de Nuestra Señora de Guadalupe, a place of worship dedicated to the Virgin of Guadalupe. It’s the cathedral, the seat of the Diocese of Mexicali, located in the city of Mexicali, the capital of Baja California. Nearby, you can see La Chinesca, a zone with a high concentration of residents of Chinese origin. This area, established in the early 20th century, was formed by Chinese immigrants brought from the United States to work the land. It’s estimated that 5,000 people live there today.",
+      "thin_facts": false,
+      "sources": [
+        "https://www.openstreetmap.org/way/558315991",
+        "https://es.wikipedia.org/wiki/Catedral_de_Mexicali",
+        "https://es.wikipedia.org/wiki/La_Chinesca_(barrio_chino_de_Mexicali)"
+      ]
+    },
+    {
+      "id": "node/14016739610",
+      "name": "Maromero Paez",
+      "lat": 32.6627768,
+      "lon": -115.4911101,
+      "radius_m": 35,
+      "audio": "audio/06-maromero-paez.m4a",
+      "duration_s": 7.9,
+      "story": "Look at the wall in front of you. You see Maromero Paez. It is a mural. People visit this place to see it. You can take a look at the artwork.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/node/14016739610"
+      ]
+    },
+    {
+      "id": "way/1028508444",
+      "name": "Iglesia Metodista Templo El Divino Redentor",
+      "lat": 32.6618708,
+      "lon": -115.4919106,
+      "radius_m": 35,
+      "audio": "audio/07-iglesia-metodista-templo-el-divino-reden.m4a",
+      "duration_s": 12.0,
+      "story": "Look up at the Iglesia Metodista Templo El Divino Redentor. You see a place of worship. It is a Christian church. Take a look at the building before you. It stands as a place for people to gather. You can see it right here.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/1028508444"
+      ]
+    },
+    {
+      "id": "way/1373477864",
+      "name": "Museo Wok",
+      "lat": 32.6616253,
+      "lon": -115.4939579,
+      "radius_m": 35,
+      "audio": "audio/08-museo-wok.m4a",
+      "duration_s": 11.8,
+      "story": "Look across the street at Museo Wok. You see a museum in Mexicali, Mexico. It is a place for tourism. Notice the building’s presence here. Consider what might be inside. Perhaps you will visit. Take a look.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/1373477864"
+      ]
+    },
+    {
+      "id": "node/14013525935",
+      "name": "CimaLeón",
+      "lat": 32.6631098,
+      "lon": -115.4936952,
+      "radius_m": 35,
+      "audio": "audio/09-cimaleon.m4a",
+      "duration_s": 14.2,
+      "story": "Look up at the sculpture before you. You see a metal artwork called CimaLeón. The artist is Jaime Carbó. It is a statue, and it is marked as a place of interest for tourism. Take a look at the form of the piece. It is a work of art, and you are standing right next to it.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/node/14013525935"
+      ]
+    },
+    {
+      "id": "way/169521599",
+      "name": "Niños Heroes de Chapultepec 1915",
+      "lat": 32.6648289,
+      "lon": -115.4921734,
+      "radius_m": 35,
+      "audio": "audio/10-ninos-heroes-de-chapultepec-1915.m4a",
+      "duration_s": 11.6,
+      "story": "Look around at the open space before you. You are standing in Niños Heroes de Chapultepec 1915. It is a park. Take a look at the area; you can see it extends quite a bit. It is a place for leisure.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/169521599"
+      ]
+    },
+    {
+      "id": "node/12720568409",
+      "name": "Forjador de Ilusiones",
+      "lat": 32.6646735,
+      "lon": -115.4872309,
+      "radius_m": 35,
+      "audio": "audio/11-forjador-de-ilusiones.m4a",
+      "duration_s": 9.0,
+      "story": "Look at the sculpture in front of you. You see Forjador de Ilusiones. It is an artwork. People visit this place as a tourist attraction. You can take a look at the sculpture.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/node/12720568409"
+      ]
+    },
+    {
+      "id": "way/193808892",
+      "name": "Plaza del Mariachi",
+      "lat": 32.6584335,
+      "lon": -115.4869842,
+      "radius_m": 35,
+      "audio": "audio/12-plaza-del-mariachi.m4a",
+      "duration_s": 9.9,
+      "story": "Look around at Plaza del Mariachi. You see a park. It is a place for leisure. Take a look at the space around you. You can see the park extends in all directions. It is a place to be.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/193808892"
+      ]
+    }
+  ]
+}
