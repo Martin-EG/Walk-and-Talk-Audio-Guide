@@ -12,6 +12,8 @@ import SwiftUI
 struct HomeView: View {
     // Created once and handed to every screen through the environment (like a React context).
     @State private var model = AppModel()
+    /// The tour waiting on the "Remove?" confirmation, if any.
+    @State private var pendingRemoval: TourLibrary.SavedTour?
 
     private let demo = TourLoader.bundled(route: "mexicali2")
         .flatMap { TourLibrary.summary(of: $0.folder, name: "Mexicali downtown") }
@@ -36,15 +38,20 @@ struct HomeView: View {
                         NavigationLink(value: Route.walk(folder: tour.folder)) {
                             TourCard(tour: tour, showDate: true)
                         }
-                    }
-                    .onDelete { offsets in  // swipe left to delete
-                        offsets.map { model.savedTours[$0] }.forEach(model.delete)
+                        // Swipe left or long-press; both ask before deleting.
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            Button("Remove", systemImage: "trash") { pendingRemoval = tour }
+                                .tint(.red)
+                        }
+                        .contextMenu {
+                            Button("Remove tour", systemImage: "trash", role: .destructive) { pendingRemoval = tour }
+                        }
                     }
                 } header: {
                     sectionHeader("Your tours", systemImage: "bookmark.fill")
                 } footer: {
                     if !model.savedTours.isEmpty {
-                        Text("Saved on this phone. They play offline, even in airplane mode.")
+                        Text("Saved on this phone. They play offline, even in airplane mode. Swipe left on a tour to remove it.")
                     }
                 }
 
@@ -72,6 +79,16 @@ struct HomeView: View {
                 }
             }
             .onAppear { model.refresh() }
+            .confirmationDialog(
+                "Remove \(pendingRemoval?.name ?? "tour")?",
+                isPresented: Binding(get: { pendingRemoval != nil }, set: { if !$0 { pendingRemoval = nil } }),
+                titleVisibility: .visible,
+                presenting: pendingRemoval
+            ) { tour in
+                Button("Remove tour", role: .destructive) { model.delete(tour) }
+            } message: { _ in
+                Text("Its stories and audio are deleted from this phone. This can't be undone.")
+            }
         }
         .environment(model)
     }
