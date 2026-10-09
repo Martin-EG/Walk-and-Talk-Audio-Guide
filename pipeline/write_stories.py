@@ -51,14 +51,22 @@ Rules:
 
 RICH_RULES = "- Include one surprising fact, taken from the facts."
 THIN_RULES = """- The facts about this place are thin: there is NO surprising fact about it, so do not include one. Never write "did you know", "surprisingly", "interestingly", or "originally".
-- Keep it short. Say plainly what kind of place it is, invite the listener to take a look, and stop. A short honest story is better than a long one.
+- Keep it short. Say plainly what kind of place it is, invite the listener to take a look, then end the story. A short honest story is better than a long one.
 - Do not translate or explain the place's name. Never mention OpenStreetMap, tags, or "the facts".
-- Do not describe sounds, crowds, weather, figures, materials, colors, shapes, the street, the neighborhood, or what the area is known for; you cannot see the place. Never say what kind of area it is (residential, industrial, commercial) or what it is near."""
+- Do not describe sounds, crowds, weather, figures, materials, colors, shapes, the street, the neighborhood, or what the area is known for; you cannot see the place. Never say what kind of area it is (residential, industrial, commercial) or what it is near.
+- Do not describe people or what they are doing, and do not mention objects that are not in the facts (benches, fountains, signs, paths). Do not tell the listener how the place feels (quiet, peaceful, busy) or to breathe or relax."""
 # In a thin story these phrases almost always introduce an invented fact.
 THIN_BANNED = ["did you know", "surprising", "interesting", "originally", "was built", "was created",
                "built in", "dates back", "history of", "known for", "area is", "residential",
                "industrial", "commercial", "located near", "is near"]
 
+# Details a thin story can't know: flagged only when the facts don't mention them.
+THIN_INVENTED = ["people", "visitors", "crowd", "crowds", "families", "children", "students", "bench", "benches",
+                 "fountain", "fountains", "quiet", "quietness", "peaceful", "busy", "breathe", "relax", "sky",
+                 "gente", "personas", "visitantes", "familias", "niños", "estudiantes", "banca", "bancas",
+                 "fuente", "fuentes", "tranquilo", "tranquila", "silencio", "respira"]
+# A story whose last sentence is just "Stop." (the model reading an instruction aloud).
+STOP_ENDING = re.compile(r"(^|[.!?]\s+)(stop|alto)[.!]?\s*$", re.IGNORECASE)
 
 # References to other stops or the route; they break when stops play out of order or are skipped.
 ORDER_PHRASES = ["previous stop", "last stop", "next stop", "first stop", "earlier stop", "our tour", "this tour",
@@ -165,6 +173,13 @@ def problems(story, facts, thin):
     banned = [b for b in THIN_BANNED if thin and b in story.lower()]
     if banned:
         found.append(f"It uses '{banned[0]}', which introduces something not in the facts. Remove any claim not in the facts.")
+    invented = [w for w in THIN_INVENTED
+                if thin and re.search(rf"\b{w}\b", plain(story)) and not re.search(rf"\b{w}\b", plain(facts))]
+    if invented:
+        found.append(f"It mentions '{invented[0]}', which is not in the facts. Do not describe people, "
+                     "objects, or how the place feels; say only what kind of place it is.")
+    if STOP_ENDING.search(story.strip()):
+        found.append("It ends with the word 'Stop'. End on a full sentence about the place instead.")
     order = [p for p in ORDER_PHRASES if p in plain(story)]
     if order:
         found.append(f"It says '{order[0]}'. The story must stand alone: never mention other stops, "
