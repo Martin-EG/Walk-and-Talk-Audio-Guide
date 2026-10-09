@@ -1,0 +1,86 @@
+{
+  "route": "mexicali2",
+  "language": "en",
+  "center": {
+    "lat": 32.602955,
+    "lon": -115.478431
+  },
+  "radius_m": 500,
+  "generated_at": "2026-10-08T18:12:49",
+  "models": {
+    "story": "gemma3:4b + gemma3:12b for thin stops (Ollama)",
+    "voice": "en_US-lessac-medium (Piper)"
+  },
+  "stops": [
+    {
+      "id": "way/585116122",
+      "name": "Parque Gran Hacienda",
+      "lat": 32.6016739,
+      "lon": -115.4800297,
+      "radius_m": 35,
+      "audio": "audio/01-parque-gran-hacienda.m4a",
+      "duration_s": 11.6,
+      "story": "Look around you at Parque Gran Hacienda. You stand in a park. It is a place for leisure. Take a look at the space around you. You can see the park extends in several directions. It is open for you to enjoy.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/585116122"
+      ]
+    },
+    {
+      "id": "way/328332078",
+      "name": "Parque Mágica",
+      "lat": 32.6007075,
+      "lon": -115.4826925,
+      "radius_m": 35,
+      "audio": "audio/02-parque-magica.m4a",
+      "duration_s": 9.4,
+      "story": "Look around you at Parque Mágica. You are standing in a park. Take a look at the space before you. It is a place for leisure. You see open ground. This is Parque Mágica.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/328332078"
+      ]
+    },
+    {
+      "id": "way/469609604",
+      "name": "Juventud 2000",
+      "lat": 32.6016414,
+      "lon": -115.4768164,
+      "radius_m": 35,
+      "audio": "audio/03-juventud-2000.m4a",
+      "duration_s": 11.7,
+      "story": "Look around you at this open space. You see a recreation ground. People use it for multiple sports. It is called Juventud 2000. Take a look at the area around you; it is a place for recreation and sport.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/469609604"
+      ]
+    },
+    {
+      "id": "way/544605188",
+      "name": "Jardines de Cecyte Xochimilco",
+      "lat": 32.6038781,
+      "lon": -115.4742922,
+      "radius_m": 35,
+      "audio": "audio/04-jardines-de-cecyte-xochimilco.m4a",
+      "duration_s": 13.6,
+      "story": "Look around you at the Jardines de Cecyte Xochimilco. You are standing in a park. Take a look at the open space before you. This is a place for leisure. You can see the park extends out from where you stand. Enjoy the Jardines de Cecyte Xochimilco.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/544605188"
+      ]
+    },
+    {
+      "id": "way/469609606",
+      "name": "Parque Hacienda del Real",
+      "lat": 32.60709,
+      "lon": -115.4773652,
+      "radius_m": 35,
+      "audio": "audio/05-parque-hacienda-del-real.m4a",
+      "duration_s": 10.2,
+      "story": "Look around you at Parque Hacienda del Real. You are standing in a park. Take a look at the space around you. You see an area designated for leisure. It is a place for recreation. Enjoy the park.",
+      "thin_facts": true,
+      "sources": [
+        "https://www.openstreetmap.org/way/469609606"
+      ]
+    }
+  ]
+}

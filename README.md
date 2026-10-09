@@ -37,7 +37,7 @@ Steps (one file each in `pipeline/`): `fetch_pois` (OSM Overpass) → `fetch_wik
 
 ## iOS
 
-The app in `ios/WalkAndTalk` bundles `tours/mexicali` and plays each stop's story once as you walk into its radius, offline and with the screen locked. First-time Xcode setup: [docs/xcode-setup.md](docs/xcode-setup.md). Tests, GPX simulation, and the field test: [docs/walk-test.md](docs/walk-test.md).
+The app in `ios/WalkAndTalk` bundles the tour packs in `tours/` (currently it walks `mexicali2`) and plays each stop's story once as you walk into its radius, offline and with the screen locked. First-time Xcode setup: [docs/xcode-setup.md](docs/xcode-setup.md). Tests, GPX simulation, and the field test: [docs/walk-test.md](docs/walk-test.md).
 
 ## Status
 

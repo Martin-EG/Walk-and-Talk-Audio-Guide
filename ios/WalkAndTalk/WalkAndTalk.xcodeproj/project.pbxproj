@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A1C00000000000000000002 /* mexicali in Resources */ = {isa = PBXBuildFile; fileRef = 7A1C00000000000000000001 /* mexicali */; };
+		7A1C00000000000000000012 /* mexicali2 in Resources */ = {isa = PBXBuildFile; fileRef = 7A1C00000000000000000011 /* mexicali2 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,8 +23,9 @@
 
 /* Begin PBXFileReference section */
 		7A1C00000000000000000001 /* mexicali */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mexicali; path = ../../tours/mexicali; sourceTree = SOURCE_ROOT; };
-		7A1C00000000000000000004 /* mexicali-walk.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "mexicali-walk.gpx"; sourceTree = "<group>"; };
-		7A1C00000000000000000005 /* mexicali-quick.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "mexicali-quick.gpx"; sourceTree = "<group>"; };
+		7A1C00000000000000000011 /* mexicali2 */ = {isa = PBXFileReference; lastKnownFileType = folder; name = mexicali2; path = ../../tours/mexicali2; sourceTree = SOURCE_ROOT; };
+		7A1C00000000000000000004 /* mexicali2-walk.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "mexicali2-walk.gpx"; sourceTree = "<group>"; };
+		7A1C00000000000000000005 /* mexicali2-quick.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "mexicali2-quick.gpx"; sourceTree = "<group>"; };
 		7A1C00000000000000000007 /* WalkAndTalkTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WalkAndTalkTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9496BA0A307738690006CB39 /* WalkAndTalk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalkAndTalk.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -35,6 +37,19 @@
 				Info.plist,
 			);
 			target = 9496BA09307738690006CB39 /* WalkAndTalk */;
+		};
+		9496BAF430787A720006CB39 /* Exceptions for "WalkAndTalk" folder in "WalkAndTalkTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				"mexicali2/audio/01-parque-gran-hacienda.m4a",
+				"mexicali2/audio/02-parque-magica.m4a",
+				"mexicali2/audio/03-juventud-2000.m4a",
+				"mexicali2/audio/04-jardines-de-cecyte-xochimilco.m4a",
+				"mexicali2/audio/05-parque-hacienda-del-real.m4a",
+				mexicali2/build_log.txt,
+				mexicali2/tour.json,
+			);
+			target = 7A1C00000000000000000008 /* WalkAndTalkTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
@@ -48,6 +63,7 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				9496BA1930773D640006CB39 /* Exceptions for "WalkAndTalk" folder in "WalkAndTalk" target */,
+				9496BAF430787A720006CB39 /* Exceptions for "WalkAndTalk" folder in "WalkAndTalkTests" target */,
 			);
 			path = WalkAndTalk;
 			sourceTree = "<group>";
@@ -71,8 +87,8 @@
 		7A1C00000000000000000003 /* GPX */ = {
 			isa = PBXGroup;
 			children = (
-				7A1C00000000000000000004 /* mexicali-walk.gpx */,
-				7A1C00000000000000000005 /* mexicali-quick.gpx */,
+				7A1C00000000000000000004 /* mexicali2-walk.gpx */,
+				7A1C00000000000000000005 /* mexicali2-quick.gpx */,
 			);
 			path = GPX;
 			sourceTree = "<group>";
@@ -83,6 +99,7 @@
 				9496BA0C307738690006CB39 /* WalkAndTalk */,
 				7A1C00000000000000000006 /* WalkAndTalkTests */,
 				7A1C00000000000000000001 /* mexicali */,
+				7A1C00000000000000000011 /* mexicali2 */,
 				7A1C00000000000000000003 /* GPX */,
 				9496BA0B307738690006CB39 /* Products */,
 			);
@@ -188,6 +205,7 @@
 			isa = PBXResourcesBuildPhase;
 			files = (
 				7A1C00000000000000000002 /* mexicali in Resources */,
+				7A1C00000000000000000012 /* mexicali2 in Resources */,
 			);
 		};
 /* End PBXResourcesBuildPhase section */

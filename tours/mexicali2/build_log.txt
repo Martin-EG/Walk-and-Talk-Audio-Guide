@@ -1,0 +1,30 @@
+=== 2026-10-08T17:59:48  route=mexicali2 lat=32.579772 lon=-115.466925 radius=500 lang=en cache=on
+models: gemma3:4b + gemma3:12b for thin stops (Ollama), en_US-lessac-medium (Piper)
+fetch_pois        24.0 s   cache 0 hits / 1 misses
+fetch_wiki         2.2 s   cache 0 hits / 6 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories     17.5 s   cache 0 hits / 1 misses
+narrate            1.8 s   cache 0 hits / 1 misses
+total             45.5 s
+stops: 1, audio: 10 s total, avg story 38 words
+
+=== 2026-10-08T18:01:43  route=mexicali2 lat=32.602955 lon=-115.478431 radius=500 lang=en cache=on
+models: gemma3:4b + gemma3:12b for thin stops (Ollama), en_US-lessac-medium (Piper)
+fetch_pois        15.2 s   cache 0 hits / 1 misses
+fetch_wiki         6.4 s   cache 0 hits / 18 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories     20.6 s   cache 0 hits / 4 misses
+narrate            3.4 s   cache 0 hits / 4 misses
+total             45.7 s
+stops: 4, audio: 45 s total, avg story 40 words
+
+=== 2026-10-08T18:12:49  route=mexicali2 lat=32.602955 lon=-115.478431 radius=500 lang=en cache=on
+models: gemma3:4b + gemma3:12b for thin stops (Ollama), en_US-lessac-medium (Piper)
+fetch_pois         3.0 s   cache 0 hits / 1 misses
+fetch_wiki         1.4 s   cache 18 hits / 4 misses
+rank               0.0 s   cache 0 hits / 0 misses
+write_stories     14.2 s   cache 4 hits / 1 misses
+narrate            2.0 s   cache 4 hits / 1 misses
+total             20.7 s
+stops: 5, audio: 56 s total, avg story 40 words
+

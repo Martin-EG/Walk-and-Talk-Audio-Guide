@@ -1,0 +1,68 @@
+[
+  {
+    "id": "way/585116122",
+    "name": "Parque Gran Hacienda",
+    "lat": 32.6016739,
+    "lon": -115.4800297,
+    "tags": {
+      "leisure": "park",
+      "name": "Parque Gran Hacienda"
+    },
+    "wiki": null,
+    "wikidata_description": null,
+    "score": 0.5
+  },
+  {
+    "id": "way/328332078",
+    "name": "Parque Mágica",
+    "lat": 32.6007075,
+    "lon": -115.4826925,
+    "tags": {
+      "leisure": "park",
+      "name": "Parque Mágica"
+    },
+    "wiki": null,
+    "wikidata_description": null,
+    "score": 0.5
+  },
+  {
+    "id": "way/469609604",
+    "name": "Juventud 2000",
+    "lat": 32.6016414,
+    "lon": -115.4768164,
+    "tags": {
+      "landuse": "recreation_ground",
+      "name": "Juventud 2000",
+      "sport": "multi"
+    },
+    "wiki": null,
+    "wikidata_description": null,
+    "score": 0.5
+  },
+  {
+    "id": "way/544605188",
+    "name": "Jardines de Cecyte Xochimilco",
+    "lat": 32.6038781,
+    "lon": -115.4742922,
+    "tags": {
+      "leisure": "park",
+      "name": "Jardines de Cecyte Xochimilco"
+    },
+    "wiki": null,
+    "wikidata_description": null,
+    "score": 0.5
+  },
+  {
+    "id": "way/469609606",
+    "name": "Parque Hacienda del Real",
+    "lat": 32.60709,
+    "lon": -115.4773652,
+    "tags": {
+      "leisure": "park",
+      "name": "Parque Hacienda del Real"
+    },
+    "wiki": null,
+    "wikidata_description": null,
+    "score": 0.5
+  }
+]

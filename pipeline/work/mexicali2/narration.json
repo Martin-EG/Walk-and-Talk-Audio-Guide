@@ -1,0 +1,27 @@
+[
+  {
+    "id": "way/585116122",
+    "audio": "audio/01-parque-gran-hacienda.m4a",
+    "duration_s": 11.6
+  },
+  {
+    "id": "way/328332078",
+    "audio": "audio/02-parque-magica.m4a",
+    "duration_s": 9.4
+  },
+  {
+    "id": "way/469609604",
+    "audio": "audio/03-juventud-2000.m4a",
+    "duration_s": 11.7
+  },
+  {
+    "id": "way/544605188",
+    "audio": "audio/04-jardines-de-cecyte-xochimilco.m4a",
+    "duration_s": 13.6
+  },
+  {
+    "id": "way/469609606",
+    "audio": "audio/05-parque-hacienda-del-real.m4a",
+    "duration_s": 10.2
+  }
+]

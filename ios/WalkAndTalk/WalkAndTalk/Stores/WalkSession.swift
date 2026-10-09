@@ -25,7 +25,7 @@ final class WalkSession {
     @ObservationIgnored private let loader: TourLoader?
     private var engine: ProximityEngine
 
-    init(route: String = "mexicali") {
+    init(route: String = "mexicali2") {
         // Work in local variables first: Swift won't let us read `self` until every
         // property has a value.
         let loader = TourLoader.bundled(route: route)

@@ -32,6 +32,8 @@ nwr(around:{radius},{lat},{lon})[name]->.named;
   nwr.named[tourism~"^(attraction|museum|artwork|viewpoint)$"];
   nwr.named[amenity~"^(place_of_worship|theatre)$"];
   nwr.named[leisure=park];
+  nwr.named[leisure~"^(sports_centre|stadium|recreation_ground)$"];
+  nwr.named[landuse=recreation_ground];
   nwr.named[wikipedia];
   nwr.named[wikidata];
 );
