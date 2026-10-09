@@ -19,6 +19,9 @@ OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gemma3:4b")              # stories for stops with Wikipedia text or notes
 THIN_STORY_MODEL = os.environ.get("THIN_STORY_MODEL", "gemma3:12b")  # stops with only OSM tags: the bigger model obeys "don't invent" better
 LLM_TEMPERATURE = 0.3
+# CPU threads for Ollama. Unset = Ollama decides (fine on a Mac). In a container Ollama sees every
+# host core, not the container's share, and slows to a crawl; set this to the vCPUs you actually get.
+LLM_NUM_THREAD = int(os.environ["OLLAMA_NUM_THREAD"]) if os.environ.get("OLLAMA_NUM_THREAD") else None
 
 # Text-to-speech (Piper, local). One voice per tour language.
 TTS_ENGINE = "piper"

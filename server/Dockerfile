@@ -18,5 +18,5 @@ COPY pipeline pipeline
 COPY server server
 
 ENV DATA_DIR=/data PYTHONUNBUFFERED=1
-# "::" listens on IPv4 and IPv6. Railway sets PORT.
-CMD ["sh", "-c", "uvicorn --app-dir server app:app --host :: --port ${PORT:-8000}"]
+# Public traffic arrives over IPv4 through Railway's proxy. Railway sets PORT.
+CMD ["sh", "-c", "echo \"starting api on port ${PORT:-8000}\" && exec uvicorn --app-dir server app:app --host 0.0.0.0 --port ${PORT:-8000}"]
