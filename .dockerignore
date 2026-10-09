@@ -1,0 +1,12 @@
+# Only pipeline/ and server/ go into the API image (server/Dockerfile).
+.git
+.venv
+ios
+tours
+tests
+docs
+pipeline/cache
+pipeline/work
+pipeline/voices
+server/data
+**/__pycache__

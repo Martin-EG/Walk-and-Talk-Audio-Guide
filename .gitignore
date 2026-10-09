@@ -31,3 +31,9 @@ xcuserdata/
 
 # Pipeline cache (HTTP, LLM, TTS responses)
 pipeline/cache/
+
+# Server data when run locally (tours, jobs, cache)
+server/data/
+
+# Tour server URL + API key for the app (template: ios/WalkAndTalk/Secrets.example.swift)
+ios/WalkAndTalk/WalkAndTalk/App/Secrets.swift
