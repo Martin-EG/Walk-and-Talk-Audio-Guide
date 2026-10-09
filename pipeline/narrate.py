@@ -60,7 +60,8 @@ def to_m4a(wav_path, m4a_path):
     subprocess.run(cmd, check=True)
 
 
-def run(work_dir, tour_dir, lang):
+def run(work_dir, tour_dir, lang, on_progress=None):
+    """on_progress(done, total) is called after each audio file (the server uses it for "3/10")."""
     stops = json.loads((work_dir / "stops_ranked.json").read_text())
     stories = json.loads((work_dir / "stories.json").read_text())
     voice_name, voice = load_voice(lang)
@@ -80,6 +81,8 @@ def run(work_dir, tour_dir, lang):
         size_kb = (audio_dir / m4a_name).stat().st_size / 1024
         results.append({"id": stop["id"], "audio": f"audio/{m4a_name}", "duration_s": round(duration, 1)})
         print(f"  {m4a_name}: {duration:.1f} s, {size_kb:.0f} KB")
+        if on_progress:
+            on_progress(i, len(stops))
     (work_dir / "narration.json").write_text(json.dumps(results, indent=2))
     return results
 

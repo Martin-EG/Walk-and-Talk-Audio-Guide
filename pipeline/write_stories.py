@@ -33,6 +33,8 @@ LANGUAGE_NAMES = {"en": "English", "es": "Spanish"}
 SKIP_TAGS = {"name", "building", "access", "drive_through", "wikidata", "wikipedia", "healthcare",
              "addr:housenumber", "addr:postcode", "addr:state", "addr:country", "check_date"}
 EXTRACT_CHARS = 1500
+# Ollama's own timing for every uncached call, so builds can report tokens/s. Cleared by run().
+llm_calls = []
 AREA_CHARS = 600
 AREA_MAX_M = 250  # area articles geotagged this close to a stop are given as nearby context
 
@@ -121,7 +123,11 @@ def chat(messages, model):
         return cached["content"]
     resp = requests.post(f"{config.OLLAMA_URL}/api/chat", json=payload, timeout=600)
     resp.raise_for_status()
-    content = resp.json()["message"]["content"].strip().strip('"').strip()
+    body = resp.json()
+    llm_calls.append({"model": model, "prompt_tokens": body.get("prompt_eval_count", 0),
+                      "prompt_s": body.get("prompt_eval_duration", 0) / 1e9,
+                      "output_tokens": body.get("eval_count", 0), "output_s": body.get("eval_duration", 0) / 1e9})
+    content = body["message"]["content"].strip().strip('"').strip()
     cache.put_json("llm", payload, {"content": content})
     return content
 
@@ -206,7 +212,9 @@ def write_review(work_dir, stops, stories):
     (work_dir / "review.md").write_text("\n".join(lines))
 
 
-def run(work_dir, lang):
+def run(work_dir, lang, on_progress=None):
+    """on_progress(done, total) is called after each story (the server uses it for "3/10")."""
+    llm_calls.clear()
     stops = json.loads((work_dir / "stops_ranked.json").read_text())
     area_path = work_dir / "area.json"
     area = json.loads(area_path.read_text()) if area_path.exists() else []
@@ -218,6 +226,8 @@ def run(work_dir, lang):
         stories.append(result)
         flag = " PROBLEM: " + " ".join(result["problems"]) if result["problems"] else ""
         print(f"  {stop['name']}: {result['words']} words, {result['attempts']} attempt(s){flag}")
+        if on_progress:
+            on_progress(len(stories), len(stops))
     (work_dir / "stories.json").write_text(json.dumps(stories, ensure_ascii=False, indent=2))
     write_review(work_dir, stops, stories)
     return stories

@@ -90,14 +90,14 @@ def order_loop(stops, lat, lon):
     return route
 
 
-def run(work_dir, lat, lon, exclude=()):
+def run(work_dir, lat, lon, exclude=(), max_stops=config.MAX_STOPS):
     stops = json.loads((work_dir / "stops_wiki.json").read_text())
     stops = [s for s in stops if s["id"] not in exclude]
     for stop in stops:
         stop["score"] = score(stop)
 
     unique = drop_duplicates(stops)
-    picked = pick_spread(unique, config.MAX_STOPS)
+    picked = pick_spread(unique, max_stops)
     route = order_loop(picked, lat, lon) if picked else []
 
     if len(route) < config.MIN_STOPS:
