@@ -24,6 +24,10 @@ struct WalkView: View {
 
                 walkButton
 
+                if !session.isWalking, let summary = session.summary {
+                    summaryCard(summary)
+                }
+
                 if let stop = session.currentStop {
                     Text(stop.name)
                         .font(.title2.bold())
@@ -62,6 +66,60 @@ struct WalkView: View {
                     .font(.headline)
                     .foregroundStyle(.secondary)
             }
+        }
+    }
+
+    private func summaryCard(_ summary: WalkSummary) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Walk complete")
+                .font(.title2.bold())
+            HStack(spacing: 24) {
+                stat("Stops", "\(summary.reachedCount) of \(summary.totalCount)")
+                stat("Time", Duration.seconds(summary.duration)
+                    .formatted(.units(allowed: [.hours, .minutes], width: .abbreviated)))
+                stat("Distance", Measurement(value: summary.distanceM, unit: UnitLength.meters)
+                    .formatted(.measurement(width: .abbreviated, usage: .road)))
+            }
+
+            if !summary.missed.isEmpty {
+                Divider()
+                HStack {
+                    Text("Missed stops")
+                        .font(.headline)
+                    Spacer()
+                    if session.isReplaying {
+                        Button("Stop", systemImage: "stop.fill") { session.stopReplay() }
+                    } else {
+                        Button("Play all", systemImage: "play.fill") { session.replay(summary.missed) }
+                    }
+                }
+                ForEach(summary.missed) { stop in
+                    Button {
+                        session.replay([stop])
+                    } label: {
+                        HStack {
+                            Text(stop.name)
+                                .multilineTextAlignment(.leading)
+                            Spacer()
+                            let playing = session.isReplaying && session.currentStop?.id == stop.id
+                            Image(systemName: playing ? "speaker.wave.2.fill" : "play.circle")
+                        }
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(.quaternary, in: RoundedRectangle(cornerRadius: 12))
+    }
+
+    private func stat(_ label: String, _ value: String) -> some View {
+        VStack(alignment: .leading, spacing: 2) {
+            Text(value)
+                .font(.title3.bold())
+                .monospacedDigit()
+            Text(label)
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
     }
 

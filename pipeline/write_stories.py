@@ -44,6 +44,7 @@ Rules:
 - Write in {language}, even if the facts are in another language. Keep proper names as given.
 - {min_words} to {max_words} words; aim for about {target_words}. Second person ("you"), present tense.
 - Open with something the listener can see from where they stand, framed as an invitation to look (e.g. "Look up at...", "In front of you...").
+- The story must stand alone: listeners reach stops in any order and may skip some. Never mention other stops, the tour, what came before, or where to go next.
 - Use ONLY the facts provided. Never add dates, numbers, names, people, events, history, purposes, or descriptions of colors, materials, shapes, or details that are not in the facts. Do not use your own background knowledge.
 {mode_rules}
 - Plain text only: no title, no headings, no lists, no quotation marks around the story, no stage directions."""
@@ -57,6 +58,13 @@ THIN_RULES = """- The facts about this place are thin: there is NO surprising fa
 THIN_BANNED = ["did you know", "surprising", "interesting", "originally", "was built", "was created",
                "built in", "dates back", "history of", "known for", "area is", "residential",
                "industrial", "commercial", "located near", "is near"]
+
+
+# References to other stops or the route; they break when stops play out of order or are skipped.
+ORDER_PHRASES = ["previous stop", "last stop", "next stop", "first stop", "earlier stop", "our tour", "this tour",
+                 "we saw", "you saw", "as we saw", "already seen", "already saw",
+                 "parada anterior", "siguiente parada", "proxima parada", "ultima parada", "primera parada",
+                 "vimos", "ya viste", "este recorrido", "nuestro recorrido"]
 
 
 def facts_text(stop, area, note):
@@ -157,6 +165,10 @@ def problems(story, facts, thin):
     banned = [b for b in THIN_BANNED if thin and b in story.lower()]
     if banned:
         found.append(f"It uses '{banned[0]}', which introduces something not in the facts. Remove any claim not in the facts.")
+    order = [p for p in ORDER_PHRASES if p in plain(story)]
+    if order:
+        found.append(f"It says '{order[0]}'. The story must stand alone: never mention other stops, "
+                     "the tour, or what the listener saw before or will see next.")
     return found
 
 

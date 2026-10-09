@@ -19,6 +19,10 @@ final class WalkSession {
     private(set) var playedIDs: Set<String> = []
     /// The stop whose story started most recently.
     private(set) var currentStop: Stop?
+    /// Set when a walk ends; cleared when the next one starts.
+    private(set) var summary: WalkSummary?
+    /// True while missed stops play after the walk (no GPS).
+    private(set) var isReplaying = false
 
     let tracker = LocationTracker()
     /// Field-test CSV of enter/trigger/closest events, exported from the walk screen.
@@ -26,6 +30,8 @@ final class WalkSession {
     @ObservationIgnored private let audio = AudioPlayer()
     @ObservationIgnored private let loader: TourLoader?
     private var engine: ProximityEngine
+    @ObservationIgnored private var odometer = WalkOdometer()
+    @ObservationIgnored private var startedAt: Date?
 
     /// The pack bundled inside the app.
     // `convenience` init: a shortcut that must hand off to the main (designated) init below.
@@ -58,15 +64,23 @@ final class WalkSession {
             self?.handle(location)
         }
         audio.onStart = { [weak self] stop in
-            // A stop counts as played the moment its audio starts.
-            self?.playedIDs.insert(stop.id)
-            self?.currentStop = stop
+            guard let self else { return }
+            // A stop counts as reached the moment its audio starts. Replays after the walk
+            // don't count: the walker never got there.
+            if isWalking { playedIDs.insert(stop.id) }
+            currentStop = stop
+        }
+        audio.onIdle = { [weak self] in
+            guard let self, isReplaying else { return }
+            isReplaying = false
+            audio.end()
         }
     }
 
     /// Starts a fresh walk: every stop can play again.
     func start() {
         guard !isWalking, let tour else { return }
+        stopReplay()
         do {
             try audio.begin()
         } catch {
@@ -76,6 +90,9 @@ final class WalkSession {
         engine = ProximityEngine(stops: tour.stops)
         playedIDs = []
         currentStop = nil
+        summary = nil
+        odometer = WalkOdometer()
+        startedAt = Date()
         errorMessage = nil
         isWalking = true
         log.walkStarted()
@@ -89,6 +106,37 @@ final class WalkSession {
         tracker.stop()
         audio.end()
         log.walkEnded(stops: tour?.stops ?? [])
+        let stops = tour?.stops ?? []
+        summary = WalkSummary(
+            reachedCount: playedIDs.count,
+            totalCount: stops.count,
+            duration: startedAt.map { Date().timeIntervalSince($0) } ?? 0,
+            distanceM: odometer.distanceM,
+            missed: stops.filter { !playedIDs.contains($0.id) }
+        )
+    }
+
+    /// Plays stops' stories back to back after the walk, wherever the listener is.
+    /// Replaces any replay already in progress.
+    func replay(_ stops: [Stop]) {
+        guard !isWalking, let loader, !stops.isEmpty else { return }
+        stopReplay()
+        do {
+            try audio.begin()
+        } catch {
+            errorMessage = "Audio unavailable: \(error.localizedDescription)"
+            return
+        }
+        isReplaying = true
+        for stop in stops {
+            audio.enqueue(stop, url: loader.audioURL(for: stop))
+        }
+    }
+
+    func stopReplay() {
+        guard isReplaying else { return }
+        isReplaying = false
+        audio.end()
     }
 
     /// Nearest stop that hasn't triggered yet, with distance, for the debug panel.
@@ -105,6 +153,7 @@ final class WalkSession {
         let accuracy = location.horizontalAccuracy
         // Log before the engine sees the fix, so an "enter" row always precedes its "trigger".
         log.observe(stops: engine.stops, lat: lat, lon: lon, accuracyM: accuracy, time: location.timestamp)
+        odometer.update(lat: lat, lon: lon, accuracyM: accuracy)
         if let stop = engine.update(lat: lat, lon: lon, accuracyM: accuracy) {
             log.triggered(stop, lat: lat, lon: lon, accuracyM: accuracy, time: location.timestamp)
             audio.enqueue(stop, url: loader.audioURL(for: stop))

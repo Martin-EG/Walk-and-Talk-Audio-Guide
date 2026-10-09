@@ -12,6 +12,8 @@ import AVFoundation
 final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     /// Called when a story actually starts playing (not when it's queued).
     var onStart: ((Stop) -> Void)?
+    /// Called when the last queued story finishes (or fails) and nothing is left to play.
+    var onIdle: (() -> Void)?
 
     private var queue: [(stop: Stop, url: URL)] = []
     private var player: AVAudioPlayer?
@@ -62,6 +64,7 @@ final class AudioPlayer: NSObject, AVAudioPlayerDelegate {
     private func playNext() {
         guard !queue.isEmpty else {
             player = nil
+            onIdle?()
             return
         }
         let next = queue.removeFirst()
