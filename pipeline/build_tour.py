@@ -22,6 +22,41 @@ import validate_tour
 import write_stories
 
 
+def write_tour_json(work_dir, tour_dir, route, lang, lat, lon, radius):
+    """Assemble tour.json from the step outputs. Also used by server/app.py."""
+    stops = json.loads((work_dir / "stops_ranked.json").read_text())
+    stories = json.loads((work_dir / "stories.json").read_text())
+    audio = json.loads((work_dir / "narration.json").read_text())
+    story_model = config.OLLAMA_MODEL if config.OLLAMA_MODEL == config.THIN_STORY_MODEL else \
+        f"{config.OLLAMA_MODEL} + {config.THIN_STORY_MODEL} for thin stops"
+    tour = {
+        "route": route,
+        "language": lang,
+        "center": {"lat": lat, "lon": lon},
+        "radius_m": radius,
+        "generated_at": datetime.now().isoformat(timespec="seconds"),
+        "models": {"story": f"{story_model} (Ollama)", "voice": f"{config.TTS_VOICES[lang]} (Piper)"},
+        "stops": [
+            {
+                "id": stop["id"],
+                "name": stop["name"],
+                "lat": round(stop["lat"], 7),
+                "lon": round(stop["lon"], 7),
+                "radius_m": config.TRIGGER_RADIUS_M,
+                "audio": sound["audio"],
+                "duration_s": sound["duration_s"],
+                "story": story["story"],
+                "thin_facts": story["thin_facts"],
+                "sources": story["sources"],
+            }
+            for stop, story, sound in zip(stops, stories, audio)
+        ],
+    }
+    tour_path = tour_dir / "tour.json"
+    tour_path.write_text(json.dumps(tour, ensure_ascii=False, indent=2))
+    return tour_path
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("--route", required=True, help='route name, e.g. mexicali or "Los Angeles" (becomes los-angeles)')
@@ -57,35 +92,8 @@ def main():
         timings.append((name, time.time() - t0, dict(cache.stats)))
         print(f"  done in {timings[-1][1]:.1f} s (cache {cache.stats['hits']} hits / {cache.stats['misses']} misses)")
 
-    # Assemble tour.json from the step outputs.
-    stops = json.loads((work_dir / "stops_ranked.json").read_text())
-    stories = json.loads((work_dir / "stories.json").read_text())
-    audio = json.loads((work_dir / "narration.json").read_text())
-    tour = {
-        "route": args.route,
-        "language": args.lang,
-        "center": {"lat": args.lat, "lon": args.lon},
-        "radius_m": args.radius,
-        "generated_at": datetime.now().isoformat(timespec="seconds"),
-        "models": {"story": f"{config.OLLAMA_MODEL} + {config.THIN_STORY_MODEL} for thin stops (Ollama)", "voice": f"{config.TTS_VOICES[args.lang]} (Piper)"},
-        "stops": [
-            {
-                "id": stop["id"],
-                "name": stop["name"],
-                "lat": round(stop["lat"], 7),
-                "lon": round(stop["lon"], 7),
-                "radius_m": config.TRIGGER_RADIUS_M,
-                "audio": sound["audio"],
-                "duration_s": sound["duration_s"],
-                "story": story["story"],
-                "thin_facts": story["thin_facts"],
-                "sources": story["sources"],
-            }
-            for stop, story, sound in zip(stops, stories, audio)
-        ],
-    }
-    tour_path = tour_dir / "tour.json"
-    tour_path.write_text(json.dumps(tour, ensure_ascii=False, indent=2))
+    tour_path = write_tour_json(work_dir, tour_dir, args.route, args.lang, args.lat, args.lon, args.radius)
+    tour = json.loads(tour_path.read_text())
     total = time.time() - started
 
     # Append this run's timings to build_log.txt (kept across runs so first build vs rerun can be compared).

@@ -1,19 +1,23 @@
-"""Shared settings for the Walk-and-Talk pipeline. Edit values here, not in scripts."""
+"""Shared settings for the Walk-and-Talk pipeline. Edit values here, not in scripts.
 
+A few can be overridden with environment variables (used by the server in server/): see os.environ below.
+"""
+
+import os
 from pathlib import Path
 
 # Paths
 PIPELINE_DIR = Path(__file__).resolve().parent
 REPO_DIR = PIPELINE_DIR.parent
-TOURS_DIR = REPO_DIR / "tours"
-WORK_DIR = PIPELINE_DIR / "work"    # intermediate JSON per route (stops_raw.json, ...)
+TOURS_DIR = Path(os.environ.get("WT_TOURS_DIR", REPO_DIR / "tours"))
+WORK_DIR = Path(os.environ.get("WT_WORK_DIR", PIPELINE_DIR / "work"))    # intermediate JSON per route (stops_raw.json, ...)
 NOTES_DIR = PIPELINE_DIR / "notes"  # optional hand-written facts per route: notes/<route>.json
-CACHE_DIR = PIPELINE_DIR / "cache"  # HTTP, LLM, and TTS responses; delete to start fresh
+CACHE_DIR = Path(os.environ.get("WT_CACHE_DIR", PIPELINE_DIR / "cache"))  # HTTP, LLM, and TTS responses; delete to start fresh
 
 # LLM (Gemma via local Ollama)
-OLLAMA_URL = "http://localhost:11434"
-OLLAMA_MODEL = "gemma3:4b"         # stories for stops with Wikipedia text or notes
-THIN_STORY_MODEL = "gemma3:12b"    # stops with only OSM tags: the bigger model obeys "don't invent" better
+OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
+OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gemma3:4b")              # stories for stops with Wikipedia text or notes
+THIN_STORY_MODEL = os.environ.get("THIN_STORY_MODEL", "gemma3:12b")  # stops with only OSM tags: the bigger model obeys "don't invent" better
 LLM_TEMPERATURE = 0.3
 
 # Text-to-speech (Piper, local). One voice per tour language.
@@ -24,7 +28,7 @@ TTS_VOICES = {
 }
 TTS_VOICE = TTS_VOICES["en"]  # used by check_env.py
 TTS_LENGTH_SCALE = 1.0        # >1.0 speaks slower
-VOICES_DIR = PIPELINE_DIR / "voices"  # download with: python -m piper.download_voices <voice> --data-dir pipeline/voices
+VOICES_DIR = Path(os.environ.get("WT_VOICES_DIR", PIPELINE_DIR / "voices"))  # download with: python -m piper.download_voices <voice> --data-dir pipeline/voices
 AAC_BITRATE = "64k"
 
 # Tour defaults
