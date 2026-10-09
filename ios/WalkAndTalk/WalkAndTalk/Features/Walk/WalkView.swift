@@ -3,7 +3,6 @@
 //  WalkAndTalk
 //
 
-import CoreLocation
 import SwiftUI
 
 struct WalkView: View {
@@ -39,7 +38,7 @@ struct WalkView: View {
 
                 Toggle("Debug info", isOn: $showDebug)  // `$` passes a two-way binding to the toggle
                 if showDebug {
-                    debugPanel
+                    WalkDebugPanel(session: session)
                 }
             }
             .padding()
@@ -69,33 +68,6 @@ struct WalkView: View {
         .tint(session.isWalking ? Color.red : Color.accentColor)
         .controlSize(.large)
         .disabled(session.tour == nil)
-    }
-
-    private var debugPanel: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            if let nearest = session.nearestStop {
-                Text("Nearest unplayed: \(nearest.stop.name)")
-                Text("Distance: \(Int(nearest.distanceM)) m (radius \(Int(nearest.stop.radiusM)) m)")
-            } else {
-                Text(session.isWalking ? "Nearest unplayed: waiting for GPS…" : "Nearest unplayed: not walking")
-            }
-            if let location = session.tracker.lastLocation {
-                Text("GPS accuracy: ±\(Int(location.horizontalAccuracy)) m (ignored above \(Int(ProximityEngine.maxAccuracyM)) m)")
-            }
-            Text("Permission: \(permissionText)")
-        }
-        .font(.callout.monospaced())
-        .foregroundStyle(.secondary)
-    }
-
-    private var permissionText: String {
-        switch session.tracker.authorization {
-        case .authorizedAlways: "Always"
-        case .authorizedWhenInUse: "While Using (OK if you start the walk in the app)"
-        case .denied, .restricted: "Denied: enable in Settings > Privacy > Location"
-        case .notDetermined: "Not asked yet"
-        @unknown default: "Unknown"
-        }
     }
 }
 

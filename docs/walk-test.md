@@ -19,14 +19,20 @@ CLLocationManager ──fix──▶ LocationTracker.onFix ──▶ WalkSession
 
 The trigger runs in the location callback, not in the view, because SwiftUI doesn't update views while the phone is locked.
 
-| File (`ios/WalkAndTalk/WalkAndTalk/`) | Job |
-| --- | --- |
-| `Models.swift` | `Tour`, `Stop`, `TourLoader` (reads `mexicali/tour.json` from the app bundle) |
-| `ProximityEngine.swift` | Pure Swift trigger logic, unit-tested |
-| `LocationTracker.swift` | CLLocationManager: Always permission, background updates, best accuracy, 5 m filter |
-| `AudioPlayer.swift` | `.playback` audio session for the whole walk, story queue, resumes after calls |
-| `WalkSession.swift` | Connects the three above |
-| `WalkView.swift` | Start/Stop, current stop, "X of N stops", story text, debug panel |
+Code lives in `ios/WalkAndTalk/WalkAndTalk/`, one folder per kind of thing. Xcode picks up new files and folders on its own (synchronized folders), so adding a file needs no project changes.
+
+| Folder | File | Job |
+| --- | --- | --- |
+| `App/` | `WalkAndTalkApp.swift` | Entry point; creates the `WalkSession` |
+| `Models/` | `Tour.swift`, `Stop.swift` | Plain data decoded from `tour.json` |
+| `Engine/` | `ProximityEngine.swift` | Pure Swift trigger logic, unit-tested |
+| `Services/` | `TourLoader.swift` | Reads `mexicali/tour.json` and audio URLs from the app bundle |
+| | `LocationTracker.swift` | CLLocationManager: Always permission, background updates, best accuracy, 5 m filter |
+| | `AudioPlayer.swift` | `.playback` audio session for the whole walk, story queue, resumes after calls |
+| `Stores/` | `WalkSession.swift` | Observable walk state; connects location → engine → audio |
+| `Features/Walk/` | `WalkView.swift`, `WalkDebugPanel.swift` | Start/Stop, current stop, "X of N stops", story text; debug panel |
+
+Tests mirror this in `ios/WalkAndTalk/WalkAndTalkTests/` (`Engine/`, `Services/`).
 
 The tour pack is a **folder reference** to `tours/mexicali` (blue folder in Xcode), so regenerating the pack updates the app with no Xcode changes. A new route needs its own folder reference and `WalkSession(route:)`.
 
