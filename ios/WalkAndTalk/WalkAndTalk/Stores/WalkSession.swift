@@ -27,10 +27,17 @@ final class WalkSession {
     @ObservationIgnored private let loader: TourLoader?
     private var engine: ProximityEngine
 
-    init(route: String = "mexicali2") {
+    /// The pack bundled inside the app.
+    // `convenience` init: a shortcut that must hand off to the main (designated) init below.
+    convenience init(route: String = "mexicali2") {
+        self.init(loader: TourLoader.bundled(route: route), name: route)
+    }
+
+    /// Any pack folder: bundled, or downloaded to Documents/tours/<id>/.
+    init(loader: TourLoader?, name: String) {
+        let route = name
         // Work in local variables first: Swift won't let us read `self` until every
         // property has a value.
-        let loader = TourLoader.bundled(route: route)
         var tour: Tour?
         var errorMessage: String?
         if let loader {
