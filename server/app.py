@@ -193,7 +193,7 @@ def write_log(tour_dir, tour_id, req, tour, timings, total):
     lines = [
         f"=== {tour['generated_at']}  route={tour_id} lat={req['lat']} lon={req['lon']} radius={req['radius_m']} "
         f"max_stops={req['max_stops']} lang={req['lang']} host={os.environ.get('RAILWAY_SERVICE_NAME', 'local')} "
-        f"cpus={os.cpu_count()}",
+        f"host_cpus={os.cpu_count()} ollama_threads={config.LLM_NUM_THREAD or 'auto'}",
         f"models: {tour['models']['story']}, {tour['models']['voice']}",
     ]
     for name, seconds, stats in timings:

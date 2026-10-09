@@ -118,6 +118,8 @@ def chat(messages, model):
         "stream": False,
         "options": {"temperature": config.LLM_TEMPERATURE, "seed": 42, "num_predict": 400},
     }
+    if config.LLM_NUM_THREAD:  # only when set, so cache keys from earlier runs stay valid
+        payload["options"]["num_thread"] = config.LLM_NUM_THREAD
     cached = cache.get_json("llm", payload)
     if cached is not None:
         return cached["content"]
