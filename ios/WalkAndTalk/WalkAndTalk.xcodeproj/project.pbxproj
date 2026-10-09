@@ -39,6 +39,11 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		7A1C00000000000000000006 /* WalkAndTalkTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = WalkAndTalkTests;
+			sourceTree = "<group>";
+		};
 		9496BA0C307738690006CB39 /* WalkAndTalk */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -47,20 +52,15 @@
 			path = WalkAndTalk;
 			sourceTree = "<group>";
 		};
-		7A1C00000000000000000006 /* WalkAndTalkTests */ = {
-			isa = PBXFileSystemSynchronizedRootGroup;
-			path = WalkAndTalkTests;
-			sourceTree = "<group>";
-		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		9496BA07307738690006CB39 /* Frameworks */ = {
+		7A1C0000000000000000000A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
 		};
-		7A1C0000000000000000000A /* Frameworks */ = {
+		9496BA07307738690006CB39 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
 			);
@@ -68,6 +68,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A1C00000000000000000003 /* GPX */ = {
+			isa = PBXGroup;
+			children = (
+				7A1C00000000000000000004 /* mexicali-walk.gpx */,
+				7A1C00000000000000000005 /* mexicali-quick.gpx */,
+			);
+			path = GPX;
+			sourceTree = "<group>";
+		};
 		9496BA01307738690006CB39 = {
 			isa = PBXGroup;
 			children = (
@@ -88,36 +97,9 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		7A1C00000000000000000003 /* GPX */ = {
-			isa = PBXGroup;
-			children = (
-				7A1C00000000000000000004 /* mexicali-walk.gpx */,
-				7A1C00000000000000000005 /* mexicali-quick.gpx */,
-			);
-			path = GPX;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		9496BA09307738690006CB39 /* WalkAndTalk */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 9496BA153077386A0006CB39 /* Build configuration list for PBXNativeTarget "WalkAndTalk" */;
-			buildPhases = (
-				9496BA06307738690006CB39 /* Sources */,
-				9496BA07307738690006CB39 /* Frameworks */,
-				9496BA08307738690006CB39 /* Resources */,
-			);
-			buildRules = (
-			);
-			fileSystemSynchronizedGroups = (
-				9496BA0C307738690006CB39 /* WalkAndTalk */,
-			);
-			name = WalkAndTalk;
-			productName = WalkAndTalk;
-			productReference = 9496BA0A307738690006CB39 /* WalkAndTalk.app */;
-			productType = "com.apple.product-type.application";
-		};
 		7A1C00000000000000000008 /* WalkAndTalkTests */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A1C0000000000000000000E /* Build configuration list for PBXNativeTarget "WalkAndTalkTests" */;
@@ -139,6 +121,24 @@
 			productReference = 7A1C00000000000000000007 /* WalkAndTalkTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		9496BA09307738690006CB39 /* WalkAndTalk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9496BA153077386A0006CB39 /* Build configuration list for PBXNativeTarget "WalkAndTalk" */;
+			buildPhases = (
+				9496BA06307738690006CB39 /* Sources */,
+				9496BA07307738690006CB39 /* Frameworks */,
+				9496BA08307738690006CB39 /* Resources */,
+			);
+			buildRules = (
+			);
+			fileSystemSynchronizedGroups = (
+				9496BA0C307738690006CB39 /* WalkAndTalk */,
+			);
+			name = WalkAndTalk;
+			productName = WalkAndTalk;
+			productReference = 9496BA0A307738690006CB39 /* WalkAndTalk.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -149,12 +149,12 @@
 				LastSwiftUpdateCheck = 2700;
 				LastUpgradeCheck = 2700;
 				TargetAttributes = {
-					9496BA09307738690006CB39 = {
-						CreatedOnToolsVersion = 27.0;
-					};
 					7A1C00000000000000000008 = {
 						CreatedOnToolsVersion = 27.0;
 						TestTargetID = 9496BA09307738690006CB39;
+					};
+					9496BA09307738690006CB39 = {
+						CreatedOnToolsVersion = 27.0;
 					};
 				};
 			};
@@ -179,26 +179,26 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7A1C0000000000000000000B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
 		9496BA08307738690006CB39 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
 				7A1C00000000000000000002 /* mexicali in Resources */,
 			);
 		};
-		7A1C0000000000000000000B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			files = (
-			);
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		9496BA06307738690006CB39 /* Sources */ = {
+		7A1C00000000000000000009 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
 			);
 		};
-		7A1C00000000000000000009 /* Sources */ = {
+		9496BA06307738690006CB39 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			files = (
 			);
@@ -214,6 +214,48 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
+		7A1C0000000000000000000F /* Debug configuration for PBXNativeTarget "WalkAndTalkTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HYZ2GHP9BH;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MEGdev.WalkAndTalkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalkAndTalk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WalkAndTalk";
+			};
+			name = Debug;
+		};
+		7A1C00000000000000000010 /* Release configuration for PBXNativeTarget "WalkAndTalkTests" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = HYZ2GHP9BH;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.MEGdev.WalkAndTalkTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalkAndTalk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WalkAndTalk";
+			};
+			name = Release;
+		};
 		9496BA133077386A0006CB39 /* Debug configuration for PBXProject "WalkAndTalk" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -407,51 +449,17 @@
 			};
 			name = Release;
 		};
-		7A1C0000000000000000000F /* Debug configuration for PBXNativeTarget "WalkAndTalkTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HYZ2GHP9BH;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.MEGdev.WalkAndTalkTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalkAndTalk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WalkAndTalk";
-			};
-			name = Debug;
-		};
-		7A1C00000000000000000010 /* Release configuration for PBXNativeTarget "WalkAndTalkTests" */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = HYZ2GHP9BH;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.MEGdev.WalkAndTalkTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_APPROACHABLE_CONCURRENCY = YES;
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WalkAndTalk.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/WalkAndTalk";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7A1C0000000000000000000E /* Build configuration list for PBXNativeTarget "WalkAndTalkTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A1C0000000000000000000F /* Debug configuration for PBXNativeTarget "WalkAndTalkTests" */,
+				7A1C00000000000000000010 /* Release configuration for PBXNativeTarget "WalkAndTalkTests" */,
+			);
+			defaultConfigurationName = Release;
+		};
 		9496BA05307738690006CB39 /* Build configuration list for PBXProject "WalkAndTalk" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -465,14 +473,6 @@
 			buildConfigurations = (
 				9496BA163077386A0006CB39 /* Debug configuration for PBXNativeTarget "WalkAndTalk" */,
 				9496BA173077386A0006CB39 /* Release configuration for PBXNativeTarget "WalkAndTalk" */,
-			);
-			defaultConfigurationName = Release;
-		};
-		7A1C0000000000000000000E /* Build configuration list for PBXNativeTarget "WalkAndTalkTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A1C0000000000000000000F /* Debug configuration for PBXNativeTarget "WalkAndTalkTests" */,
-				7A1C00000000000000000010 /* Release configuration for PBXNativeTarget "WalkAndTalkTests" */,
 			);
 			defaultConfigurationName = Release;
 		};
