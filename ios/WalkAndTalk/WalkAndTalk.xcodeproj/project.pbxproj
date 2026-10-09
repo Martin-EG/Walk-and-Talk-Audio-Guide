@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7A1C00000000000000000002 /* mexicali in Resources */ = {isa = PBXBuildFile; fileRef = 7A1C00000000000000000001 /* mexicali */; };
 		7A1C00000000000000000012 /* mexicali2 in Resources */ = {isa = PBXBuildFile; fileRef = 7A1C00000000000000000011 /* mexicali2 */; };
+		7A1C00000000000000000021 /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = 7A1C00000000000000000022 /* ZIPFoundation */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		9496BA07307738690006CB39 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
+				7A1C00000000000000000021 /* ZIPFoundation in Frameworks */,
 			);
 		};
 /* End PBXFrameworksBuildPhase section */
@@ -152,6 +154,9 @@
 				9496BA0C307738690006CB39 /* WalkAndTalk */,
 			);
 			name = WalkAndTalk;
+			packageProductDependencies = (
+				7A1C00000000000000000022 /* ZIPFoundation */,
+			);
 			productName = WalkAndTalk;
 			productReference = 9496BA0A307738690006CB39 /* WalkAndTalk.app */;
 			productType = "com.apple.product-type.application";
@@ -184,6 +189,9 @@
 			);
 			mainGroup = 9496BA01307738690006CB39;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				7A1C00000000000000000020 /* XCRemoteSwiftPackageReference "ZIPFoundation" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 9496BA0B307738690006CB39 /* Products */;
 			projectDirPath = "";
@@ -495,6 +503,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7A1C00000000000000000020 /* XCRemoteSwiftPackageReference "ZIPFoundation" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/weichsel/ZIPFoundation";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.9.19;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7A1C00000000000000000022 /* ZIPFoundation */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A1C00000000000000000020 /* XCRemoteSwiftPackageReference "ZIPFoundation" */;
+			productName = ZIPFoundation;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 9496BA02307738690006CB39 /* Project object */;
 	validationLevel = 1;
