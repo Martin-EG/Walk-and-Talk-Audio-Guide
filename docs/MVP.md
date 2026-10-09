@@ -100,24 +100,38 @@ Four days: build on Thursday and Friday, walk on Saturday, write on Sunday. Each
 
 ### Thu Oct 8 — Tour pipeline on the Mac
 
-- [ ] Pick the demo route: 1–2 km with at least 8 named places, and check its OSM and Wikipedia coverage
-- [ ] fetch\_pois.py and fetch\_wiki.py: get the places and summaries, rank them, keep 8–12 stops
-- [ ] write\_stories.py: Gemma prompt for 80–110 words, second person, facts from the input only
-- [ ] narrate.py: one audio file per story
-- [ ] build\_tour.py writes the tour pack; listen to every story and fix the prompt
-- [ ] Commit and push
+- [x] Pick the demo route: 1–2 km with at least 8 named places, and check its OSM and Wikipedia coverage (`mexicali2` picked, but only 5 stops: see results)
+- [x] fetch\_pois.py and fetch\_wiki.py: get the places and summaries, rank them, keep 8–12 stops
+- [x] write\_stories.py: Gemma prompt for 80–110 words, second person, facts from the input only
+- [x] narrate.py: one audio file per story
+- [x] build\_tour.py writes the tour pack; listen to every story and fix the prompt
+- [x] Commit and push (`c75ee01`, `fd5ce02`)
+
+**Pipeline results (Thu Oct 8)**
+
+- Two packs bundled in the app: `mexicali` (12 stops, `validate_tour.py` PASS) and `mexicali2` (5 stops, the app's default and the walk route)
+- `mexicali2` fails `validate_tour.py`: "tour has 5 stops; need 8-12". OSM has few named places there, so it misses the "at least 8 stops" demo bar. Before writing the post, decide: walk `mexicali` instead, widen the radius, or explain the 5 stops in the post
+- `mexicali2` stories are 34–47 words (9–14 s each, 56 s total). Every stop is a park with only `leisure=park` in its facts, so Gemma follows the "thin facts, keep it short" rule (`gemma3:12b` for thin stops). The stories are accurate but generic (see `pipeline/work/mexicali2/review.md`)
+- Build timings (`tours/mexicali2/build_log.txt`): 45.7 s cold, 20.7 s with the cache warm
 
 ### Fri Oct 9 — Walk app on the iPhone
 
-- [ ] Load the tour pack from the app bundle
-- [ ] LocationTracker with background updates and a distance filter
-- [ ] ProximityEngine: nearest unplayed stop within 30–40 m, confirmed by two consecutive GPS fixes
-- [ ] AudioPlayer: one story at a time, never overlapping, each marked played
-- [ ] One screen: Start walk, current stop, stops left
-- [ ] Quick test around the block with the screen locked
+- [x] Load the tour pack from the app bundle
+- [x] LocationTracker with background updates and a distance filter
+- [x] ProximityEngine: nearest unplayed stop within 30–40 m, confirmed by two consecutive GPS fixes
+- [x] AudioPlayer: one story at a time, never overlapping, each marked played
+- [x] One screen: Start walk, current stop, stops left
+- [ ] Quick test around the block with the screen locked (no result recorded yet)
+
+**Walk app results**
+
+- Code in `7b4fbec` and `0444298` (sources sorted into App, Models, Engine, Services, Stores, Features). Wiring and test steps are in `docs/walk-test.md`
+- 35 m radius, accuracy filter at 25 m, 2-fix rule, 5 m distance filter
+- GPX tracks `mexicali2-quick` and `mexicali2-walk` are in `ios/WalkAndTalk/GPX/`
 
 ### Sat Oct 10 — Walk it for real
 
+- [x] Prep: trigger log in the app (`Services/TriggerLog.swift`, exported with the share sheet), field-test sheet and 6-shot list in `docs/field-test.md`, `docs/field-test/` ready for the exported log
 - [ ] Walk the full route in airplane mode, early morning or after sunset to avoid the heat
 - [ ] Fix bugs, then tune the trigger radius and story length
 - [ ] Record the demo video
@@ -231,7 +245,7 @@ Build these in ios/:
 7. Unit tests for ProximityEngine: inside the radius, GPS jitter at the edge, an already-played stop, two stops close together, and a poor-accuracy fix.
 
 Acceptance checklist:
-- [ ] All ProximityEngine unit tests pass
+- [x] All ProximityEngine unit tests pass (11/11 unit tests, including TourPack and TriggerLog)
 - [ ] Simulated GPX walk plays every stop once, in order, with no overlapping audio
 - [ ] On my iPhone in airplane mode with the screen locked, a stop plays when I walk up to it
 - [ ] Stop walk ends both audio and location updates
@@ -248,7 +262,7 @@ Use this prompt in two parts: before the walk, and after you come back.
 
 Today's goal: walk the full route for real, fix what breaks, and capture material for the post.
 
-Before I leave:
+Before I leave (done Oct 8):
 1. Add a trigger log to the app: each trigger writes time, stop id, distance, and GPS accuracy to a file, plus a button that exports it with the share sheet.
 2. Make me a field-test sheet in docs/field-test.md with one row per stop: name, played (yes/no), trigger timing (early, right, late), audio quality, story accuracy, notes. Add an "after the walk" section: total time, battery used, best moment, what surprised me, what broke.
 3. Give me a 6-shot list for a 90-second demo video: the hook, the tour building on the Mac, airplane mode turned on, pocketing the phone, walking while 2–3 stories play, and the system diagram.
@@ -337,5 +351,7 @@ Add a short story of the real walk: what worked, what surprised you, what broke.
 | Gemma invents facts | Prompt only from fetched facts, and ban dates and numbers that aren't in the input |
 | iOS stops background location | Request "always" access, keep the audio session active, test with the screen locked on Friday |
 | GPS jitter triggers the wrong stop | Require two consecutive fixes inside the radius before playing |
+| Demo route has fewer than 8 stops (`mexicali2` has 5) | Walk the 12-stop `mexicali` route, or say plainly in the post that the area is short on mapped places |
+| Stops with thin facts give generic stories | Add more OSM tags to the facts, or choose stops that have Wikipedia articles |
 | TTS sounds robotic | Swap between Piper and Kokoro, or try another voice |
 | Heat during the test walk | Walk early morning or after sunset |

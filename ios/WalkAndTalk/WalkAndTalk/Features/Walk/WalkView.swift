@@ -36,6 +36,14 @@ struct WalkView: View {
                         .foregroundStyle(.secondary)
                 }
 
+                // ShareLink opens the iOS share sheet (AirDrop, Save to Files, Mail) for the file.
+                // Hidden mid-walk so the end-of-walk "closest" rows are in the export.
+                if !session.isWalking, session.log.exists {
+                    ShareLink(item: session.log.url) {
+                        Label("Export trigger log", systemImage: "square.and.arrow.up")
+                    }
+                }
+
                 Toggle("Debug info", isOn: $showDebug)  // `$` passes a two-way binding to the toggle
                 if showDebug {
                     WalkDebugPanel(session: session)

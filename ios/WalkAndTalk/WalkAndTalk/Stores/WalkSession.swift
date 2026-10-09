@@ -21,6 +21,8 @@ final class WalkSession {
     private(set) var currentStop: Stop?
 
     let tracker = LocationTracker()
+    /// Field-test CSV of enter/trigger/closest events, exported from the walk screen.
+    @ObservationIgnored let log = TriggerLog()
     @ObservationIgnored private let audio = AudioPlayer()
     @ObservationIgnored private let loader: TourLoader?
     private var engine: ProximityEngine
@@ -69,6 +71,7 @@ final class WalkSession {
         currentStop = nil
         errorMessage = nil
         isWalking = true
+        log.walkStarted()
         tracker.start()
     }
 
@@ -78,6 +81,7 @@ final class WalkSession {
         isWalking = false
         tracker.stop()
         audio.end()
+        log.walkEnded(stops: tour?.stops ?? [])
     }
 
     /// Nearest stop that hasn't triggered yet, with distance, for the debug panel.
@@ -89,9 +93,13 @@ final class WalkSession {
 
     private func handle(_ location: CLLocation) {
         guard isWalking, let loader else { return }
-        if let stop = engine.update(lat: location.coordinate.latitude,
-                                    lon: location.coordinate.longitude,
-                                    accuracyM: location.horizontalAccuracy) {
+        let lat = location.coordinate.latitude
+        let lon = location.coordinate.longitude
+        let accuracy = location.horizontalAccuracy
+        // Log before the engine sees the fix, so an "enter" row always precedes its "trigger".
+        log.observe(stops: engine.stops, lat: lat, lon: lon, accuracyM: accuracy, time: location.timestamp)
+        if let stop = engine.update(lat: lat, lon: lon, accuracyM: accuracy) {
+            log.triggered(stop, lat: lat, lon: lon, accuracyM: accuracy, time: location.timestamp)
             audio.enqueue(stop, url: loader.audioURL(for: stop))
         }
     }

@@ -28,6 +28,7 @@ Code lives in `ios/WalkAndTalk/WalkAndTalk/`, one folder per kind of thing. Xcod
 | `Engine/` | `ProximityEngine.swift` | Pure Swift trigger logic, unit-tested |
 | `Services/` | `TourLoader.swift` | Reads `<route>/tour.json` and audio URLs from the app bundle |
 | | `LocationTracker.swift` | CLLocationManager: Always permission, background updates, best accuracy, 5 m filter |
+| | `TriggerLog.swift` | Field-test CSV (`enter`, `trigger`, `closest` per stop) in Documents; exported via share sheet. See `docs/field-test.md` |
 | | `AudioPlayer.swift` | `.playback` audio session for the whole walk, story queue, resumes after calls |
 | `Stores/` | `WalkSession.swift` | Observable walk state; connects location → engine → audio |
 | `Features/Walk/` | `WalkView.swift`, `WalkDebugPanel.swift` | Start/Stop, current stop, "X of N stops", story text; debug panel |
@@ -47,7 +48,7 @@ xcodebuild test -scheme WalkAndTalk -destination 'platform=iOS Simulator,name=iP
 
 (Any simulator name from `xcrun simctl list devices available` works.)
 
-Expect 10 passing tests: 8 in `ProximityEngineTests`, plus 2 in `TourPackTests`, which check that both tours and all their audio files are inside the app, and that the app's default tour loads.
+Expect 11 passing tests: 8 in `ProximityEngineTests`; 2 in `TourPackTests`, which check that both tours and all their audio files are inside the app, and that the app's default tour loads; and 1 in `TriggerLogTests`.
 
 ## 2. Simulated walk (GPX)
 

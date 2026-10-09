@@ -41,4 +41,7 @@ The app in `ios/WalkAndTalk` bundles the tour packs in `tours/` (currently it wa
 
 ## Status
 
-Tour pack pipeline done (Mexicali, 12 stops). iOS walk loop built: proximity triggers, queued audio, background location. Next: field test.
+- **Pipeline:** done. Two packs: `mexicali` (12 stops, passes `validate_tour.py`) and `mexicali2` (5 stops, the app's default walk route; fails the 8-stop minimum because the area has few named places). `mexicali2` builds in 45.7 s cold and 20.7 s with the cache warm.
+- **iOS walk loop:** done. Proximity triggers (35 m radius, accuracy ≤ 25 m, 2 fixes in a row), queued audio, background location. 11/11 unit tests pass.
+- **Field test prep:** done. The app writes a trigger log (`enter`, `trigger`, `closest` per stop) and exports it with the share sheet. Sheet and demo shot list: [docs/field-test.md](docs/field-test.md).
+- **Next:** walk the full route in airplane mode, tune triggers and stories from the log, record the demo video. Progress checklist: [docs/MVP.md](docs/MVP.md).
