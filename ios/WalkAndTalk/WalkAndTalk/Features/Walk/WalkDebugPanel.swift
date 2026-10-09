@@ -38,3 +38,8 @@ struct WalkDebugPanel: View {
         }
     }
 }
+
+#Preview {
+    WalkDebugPanel(session: WalkSession())
+        .padding()
+}

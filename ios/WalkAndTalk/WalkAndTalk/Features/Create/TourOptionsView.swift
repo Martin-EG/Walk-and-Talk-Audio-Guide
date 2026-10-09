@@ -107,3 +107,8 @@ struct TourOptionsView: View {
         }
     }
 }
+
+#Preview {
+    NavigationStack { TourOptionsView(lat: 32.661938, lon: -115.489149) }
+        .environment(AppModel())
+}
