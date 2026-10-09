@@ -57,7 +57,7 @@ struct BuildingView: View {
             }
 
             if !preview.isEmpty {
-                Section("\(preview.count) stops found") {
+                Section("^[\(preview.count) stop](inflect: true) found") {
                     ForEach(Array(preview.enumerated()), id: \.element.id) { index, stop in
                         Text("\(index + 1). \(stop.name)")
                     }
@@ -151,4 +151,11 @@ struct BuildingView: View {
             failure = "Couldn't download the tour: \(error.localizedDescription)"
         }
     }
+}
+
+// Polls the server in Secrets.swift: shows live progress if it's running locally,
+// otherwise the "Can't reach the tour server" or "No tour with that id" message.
+#Preview {
+    NavigationStack { BuildingView(tourID: "preview") }
+        .environment(AppModel())
 }

@@ -110,3 +110,8 @@ struct StartPointView: View {
         searchFocused = false
     }
 }
+
+#Preview {
+    NavigationStack { StartPointView() }
+        .environment(AppModel())
+}

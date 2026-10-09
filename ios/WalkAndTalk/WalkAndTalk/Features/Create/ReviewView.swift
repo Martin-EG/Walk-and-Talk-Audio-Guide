@@ -11,6 +11,8 @@ import SwiftUI
 
 struct ReviewView: View {
     let tourID: String
+    /// Where the pack is; nil means Documents/tours/<tourID>/. Previews pass the bundled demo.
+    var folder: URL? = nil
 
     @Environment(AppModel.self) private var model
     @State private var tour: Tour?
@@ -34,8 +36,9 @@ struct ReviewView: View {
                             }
                         }
                     } header: {
-                        let minutes = Int((tour.stops.reduce(0) { $0 + $1.durationS } / 60).rounded())
-                        Text("\(tour.stops.count) stops · about \(minutes) min of stories")
+                        let minutes = max(1, Int((tour.stops.reduce(0) { $0 + $1.durationS } / 60).rounded()))
+                        // ^[...](inflect: true) lets iOS pick "stop" or "stops" to match the number.
+                        Text("^[\(tour.stops.count) stop](inflect: true) · about \(minutes) min of stories")
                     }
                 }
                 buttons
@@ -98,7 +101,7 @@ struct ReviewView: View {
 
     private func load() {
         do {
-            tour = try TourLoader(folder: model.library.folder(for: tourID)).load()
+            tour = try TourLoader(folder: folder ?? model.library.folder(for: tourID)).load()
         } catch {
             errorMessage = error.localizedDescription
         }
@@ -113,4 +116,11 @@ struct ReviewView: View {
             errorMessage = "Couldn't save the tour: \(error.localizedDescription)"
         }
     }
+}
+
+#Preview {
+    NavigationStack {
+        ReviewView(tourID: "mexicali2", folder: TourLoader.bundled(route: "mexicali2")?.folder)
+    }
+    .environment(AppModel())
 }
