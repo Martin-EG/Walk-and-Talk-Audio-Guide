@@ -21,6 +21,18 @@ HEADERS = {"User-Agent": config.USER_AGENT}
 SKIP_KEYS = {"boundary", "admin_level", "place", "timezone", "shop", "brand", "route", "highway", "power"}
 SKIP_AMENITIES = {"pharmacy", "bank", "atm", "restaurant", "fast_food", "cafe", "bar", "pub", "fuel",
                   "parking", "clinic", "dentist", "doctors", "car_rental", "bureau_de_change"}
+# Exceptions to SKIP_KEYS: public squares (place=square, pedestrian plazas) and malls, which
+# rank.py scores as filler. A mall may carry a brand tag; that doesn't make it a chain store.
+KEEP_TAGS = {("place", "square"), ("highway", "pedestrian"), ("shop", "mall")}
+
+
+def skipped(tags):
+    keys = SKIP_KEYS & tags.keys()
+    if tags.get("shop") == "mall":
+        keys -= {"shop", "brand"}
+    # A pedestrian street is a line; only a pedestrian area is a plaza you can stand in.
+    keys = {k for k in keys if (k, tags[k]) not in KEEP_TAGS or (k == "highway" and tags.get("area") != "yes")}
+    return bool(keys) or tags.get("type") == "boundary" or tags.get("amenity") in SKIP_AMENITIES
 
 
 def build_query(lat, lon, radius):
@@ -34,6 +46,9 @@ nwr(around:{radius},{lat},{lon})[name]->.named;
   nwr.named[leisure=park];
   nwr.named[leisure~"^(sports_centre|stadium|recreation_ground)$"];
   nwr.named[landuse=recreation_ground];
+  nwr.named[place=square];
+  nwr.named[highway=pedestrian][area=yes];
+  nwr.named[shop=mall];
   nwr.named[wikipedia];
   nwr.named[wikidata];
 );
@@ -82,7 +97,7 @@ def run(work_dir, lat, lon, radius):
     stops = []
     for element in data["elements"]:
         tags = element.get("tags", {})
-        if SKIP_KEYS & tags.keys() or tags.get("type") == "boundary" or tags.get("amenity") in SKIP_AMENITIES:
+        if skipped(tags):
             continue
         stop = to_stop(element)
         # Big ways/relations can match `around` while their center is far away.

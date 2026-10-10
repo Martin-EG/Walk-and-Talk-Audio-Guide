@@ -24,11 +24,14 @@ TAG_POINTS = {
     ("tourism", "artwork"): 1.0,
     ("tourism", "viewpoint"): 1.0,
     ("amenity", "theatre"): 1.0,
+    ("place", "square"): 1.0,
+    ("highway", "pedestrian"): 1.0,
     ("leisure", "park"): 0.5,
     ("leisure", "sports_centre"): 0.5,
     ("leisure", "stadium"): 0.5,
     ("leisure", "recreation_ground"): 0.5,
     ("landuse", "recreation_ground"): 0.5,
+    ("shop", "mall"): 0.25,  # filler: only picked when an area has too few other places
     ("wikidata", None): 0.5,
 }
 # Tags that give the story writer something real to say.
