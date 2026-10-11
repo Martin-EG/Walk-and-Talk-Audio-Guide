@@ -30,6 +30,8 @@ API_KEYS=dev-key DATA_DIR=server/data uvicorn --app-dir server app:app --port 80
 
 In the app, `ios/WalkAndTalk/WalkAndTalk/App/Secrets.swift` (git-ignored; copy `ios/WalkAndTalk/Secrets.example.swift`) points at `http://localhost:8000` with key `dev-key`.
 
+On a real iPhone, `localhost` is the phone itself. Start the server with `--host 0.0.0.0` so other devices can reach it, point `Secrets.swift` at `http://<your-mac>.local:8000` (System Settings › General › Sharing shows the name), keep the phone on the same Wi-Fi, and allow Local Network access when iOS asks. `http://<your-mac>.local:8000/health` in Safari on the phone should show `{"ok":true}`. To restart, press Ctrl+C first: a second copy fails with "address already in use".
+
 ## Railway
 
 Project `walk-and-talk`, two services in `production`:
