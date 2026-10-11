@@ -66,8 +66,40 @@ struct ProximityEngine {
     func nearestUntriggered(lat: Double, lon: Double) -> (stop: Stop, distanceM: Double)? {
         stops
             .filter { !triggered.contains($0.id) }
-            .map { (stop: $0, distanceM: Self.distanceM(lat, lon, $0.lat, $0.lon)) }
+            .map { (stop: $0, distanceM: Self.distanceM(lat, lon, to: $0)) }
             .min { $0.distanceM < $1.distanceM }
+    }
+
+    /// How far a walker is from a stop: 0 inside its outline, else the distance to the outline's
+    /// edge; from its single point when it has no outline.
+    static func distanceM(_ lat: Double, _ lon: Double, to stop: Stop) -> Double {
+        guard let area = stop.area, !area.isEmpty else {
+            return distanceM(lat, lon, stop.lat, stop.lon)
+        }
+        // Flat local projection in meters around the walker; plenty accurate across one place.
+        let k = 111_195.0
+        let cosLat = cos(lat * .pi / 180)
+        func xy(_ p: [Double]) -> (x: Double, y: Double) {
+            ((p[1] - lon) * k * cosLat, (p[0] - lat) * k)
+        }
+        var nearest = Double.infinity
+        for ring in area where ring.count >= 4 && ring.allSatisfy({ $0.count == 2 }) {
+            let points = ring.map(xy)
+            var inside = false
+            // Walker is at (0, 0). Ray casting for inside, point-to-segment for distance.
+            for (a, b) in zip(points, points.dropFirst()) {
+                if (a.y > 0) != (b.y > 0), 0 < a.x + (0 - a.y) * (b.x - a.x) / (b.y - a.y) {
+                    inside.toggle()
+                }
+                let dx = b.x - a.x, dy = b.y - a.y
+                let length2 = dx * dx + dy * dy
+                let t = length2 == 0 ? 0 : max(0, min(1, -(a.x * dx + a.y * dy) / length2))
+                nearest = min(nearest, hypot(a.x + t * dx, a.y + t * dy))
+            }
+            if inside { return 0 }
+        }
+        // Every ring was malformed: fall back to the point.
+        return nearest.isFinite ? nearest : distanceM(lat, lon, stop.lat, stop.lon)
     }
 
     /// Great-circle distance in meters (haversine). Plenty accurate at walking scale.

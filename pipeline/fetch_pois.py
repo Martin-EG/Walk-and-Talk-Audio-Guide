@@ -13,7 +13,7 @@ import requests
 
 import cache
 import config
-from geo import distance_m
+from geo import distance_m, simplify_ring
 
 HEADERS = {"User-Agent": config.USER_AGENT}
 
@@ -23,6 +23,8 @@ SKIP_AMENITIES = {"pharmacy", "bank", "atm", "restaurant", "fast_food", "cafe", 
                   "parking", "clinic", "dentist", "doctors", "car_rental", "bureau_de_change"}
 # Exceptions to SKIP_KEYS: public squares (place=square, pedestrian plazas) and malls, which
 # rank.py scores as filler. A mall may carry a brand tag; that doesn't make it a chain store.
+# Outlines are simplified to this many meters, which keeps tour.json small.
+OUTLINE_TOLERANCE_M = 3
 KEEP_TAGS = {("place", "square"), ("highway", "pedestrian"), ("shop", "mall")}
 
 
@@ -52,7 +54,7 @@ nwr(around:{radius},{lat},{lon})[name]->.named;
   nwr.named[wikipedia];
   nwr.named[wikidata];
 );
-out center tags;
+out geom tags;
 """
 
 
@@ -78,18 +80,65 @@ def overpass(query):
     raise RuntimeError(f"Overpass failed after retries: {last_error}")
 
 
-def to_stop(element):
-    # Nodes have lat/lon; ways and relations get a "center" from `out center`.
-    point = element if "lat" in element else element.get("center")
-    if not point:
+def closed_rings(lines):
+    """Join way pieces end to end into closed rings; pieces that never close are dropped."""
+    pieces = [list(line) for line in lines if len(line) >= 2]
+    rings = []
+    while pieces:
+        ring = pieces.pop()
+        while ring[0] != ring[-1]:
+            for i, piece in enumerate(pieces):
+                if piece[0] == ring[-1]:
+                    ring += piece[1:]
+                elif piece[-1] == ring[-1]:
+                    ring += piece[-2::-1]
+                else:
+                    continue
+                pieces.pop(i)
+                break
+            else:
+                break  # no piece continues this one
+        if ring[0] == ring[-1] and len(ring) >= 4:
+            rings.append(ring)
+    return rings
+
+
+def outline(element):
+    """The place's outer rings as [[lat, lon], ...] lists, simplified; None for points and lines."""
+    if element["type"] == "way":
+        lines = [element.get("geometry", [])]
+    elif element["type"] == "relation":
+        lines = [m.get("geometry", []) for m in element.get("members", [])
+                 if m.get("type") == "way" and m.get("role") == "outer"]
+    else:
         return None
-    return {
+    lines = [[(round(p["lat"], 6), round(p["lon"], 6)) for p in line if p] for line in lines]
+    rings = [simplify_ring(r, OUTLINE_TOLERANCE_M) for r in closed_rings(lines)]
+    rings = [[list(p) for p in r] for r in rings if len(r) >= 4]
+    return rings or None
+
+
+def to_stop(element):
+    # Nodes have lat/lon; ways and relations get the middle of their bounding box, like
+    # Overpass's `out center`.
+    if "lat" in element:
+        point = element
+    elif element.get("bounds"):
+        b = element["bounds"]
+        point = {"lat": (b["minlat"] + b["maxlat"]) / 2, "lon": (b["minlon"] + b["maxlon"]) / 2}
+    else:
+        return None
+    stop = {
         "id": f"{element['type']}/{element['id']}",
         "name": element["tags"]["name"],
         "lat": point["lat"],
         "lon": point["lon"],
         "tags": element["tags"],
     }
+    area = outline(element)
+    if area:
+        stop["area"] = area
+    return stop
 
 
 def run(work_dir, lat, lon, radius):

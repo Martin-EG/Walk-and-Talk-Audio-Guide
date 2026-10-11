@@ -43,6 +43,8 @@ def write_tour_json(work_dir, tour_dir, route, lang, lat, lon, radius):
                 "lat": round(stop["lat"], 7),
                 "lon": round(stop["lon"], 7),
                 "radius_m": config.TRIGGER_RADIUS_M,
+                # Outline rings, when the place has one: the stop triggers within radius_m of it.
+                **({"area": stop["area"]} if stop.get("area") else {}),
                 "audio": sound["audio"],
                 "duration_s": sound["duration_s"],
                 "story": story["story"],

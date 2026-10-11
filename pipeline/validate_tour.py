@@ -27,6 +27,13 @@ def audio_seconds(path):
     return float(match.group(1)) if match else None
 
 
+def valid_area(area):
+    def point(p):
+        return isinstance(p, list) and len(p) == 2 and all(isinstance(v, (int, float)) for v in p)
+    return isinstance(area, list) and bool(area) and all(
+        isinstance(r, list) and len(r) >= 4 and all(point(p) for p in r) and r[0] == r[-1] for r in area)
+
+
 def check(tour, tour_dir):
     errors = []
     for field in ("route", "language", "stops"):
@@ -50,6 +57,8 @@ def check(tour, tour_dir):
             errors.append(f"{label}: bad coordinates {stop['lat']}, {stop['lon']}")
         if stop["radius_m"] != config.TRIGGER_RADIUS_M:
             errors.append(f"{label}: radius_m is {stop['radius_m']}, expected {config.TRIGGER_RADIUS_M}")
+        if "area" in stop and not valid_area(stop["area"]):
+            errors.append(f"{label}: area must be a list of closed rings of [lat, lon] points")
 
         # Stops with real facts (Wikipedia or notes) get a full story; thin stops are kept short on purpose.
         low, high = ((config.THIN_MIN_WORDS, config.THIN_MAX_WORDS) if stop["thin_facts"]

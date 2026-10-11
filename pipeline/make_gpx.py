@@ -13,7 +13,7 @@ import math
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
-from geo import distance_m
+from geo import distance_m, distance_to_stop_m
 
 LEAD_IN_M = 80   # walk-up distance before the first stop and after the last
 EXTRA_WAIT_S = 5
@@ -58,7 +58,7 @@ def main():
     for i, stop in enumerate(stops):
         path = leg(prev, coords[i], 1)  # 1 m steps
         for later in stops[i + 1:]:
-            closest = min(distance_m(*p, later["lat"], later["lon"]) for p in path)
+            closest = min(distance_to_stop_m(*p, later) for p in path)
             if closest <= later["radius_m"]:
                 print(f"warning: walking to {stop['name']} passes {closest:.0f} m from later stop {later['name']}")
         prev = coords[i]

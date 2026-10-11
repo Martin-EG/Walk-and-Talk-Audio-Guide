@@ -50,7 +50,7 @@ final class TriggerLog {
     func observe(stops: [Stop], lat: Double, lon: Double, accuracyM: Double, time: Date) {
         guard accuracyM >= 0 else { return }   // negative = invalid fix (CoreLocation convention)
         for stop in stops {
-            let d = ProximityEngine.distanceM(lat, lon, stop.lat, stop.lon)
+            let d = ProximityEngine.distanceM(lat, lon, to: stop)
             // `map` on an optional runs only when a value exists; `?? true` covers "none yet".
             if closest[stop.id].map({ d < $0.distanceM }) ?? true {
                 closest[stop.id] = (d, accuracyM)
@@ -63,7 +63,7 @@ final class TriggerLog {
     }
 
     func triggered(_ stop: Stop, lat: Double, lon: Double, accuracyM: Double, time: Date) {
-        let d = ProximityEngine.distanceM(lat, lon, stop.lat, stop.lon)
+        let d = ProximityEngine.distanceM(lat, lon, to: stop)
         write(time, "trigger", stop, d, accuracyM)
     }
 
