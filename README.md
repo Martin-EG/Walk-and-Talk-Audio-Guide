@@ -58,7 +58,7 @@ Endpoints, Railway deployment and curl examples: [server/README.md](server/READM
 2. Copy `ios/WalkAndTalk/Secrets.example.swift` to `ios/WalkAndTalk/WalkAndTalk/App/Secrets.swift` (git-ignored). The defaults point at `http://localhost:8000` with key `dev-key`, which the Simulator reaches directly.
 3. Run on a Simulator or a phone. The bundled `mexicali2` tour works with no server at all.
 4. To fake a walk in the Simulator: Debug → Simulate Location → `ios/WalkAndTalk/GPX/mexicali2-walk.gpx`.
-5. Tests: ⌘U (19 unit tests). Field-test procedure: [docs/walk-test.md](docs/walk-test.md).
+5. Tests: ⌘U (24 unit tests). Field-test procedure: [docs/walk-test.md](docs/walk-test.md).
 
 ## Layout
 
