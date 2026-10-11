@@ -1,15 +1,15 @@
-![header](docs/walk-n-talk-header.png)
+![Walk & Talk: offline audio walking tours](docs/walk-n-talk-header.png)
 # Walk & Talk
 
 An offline audio walking tour: pick a spot, and open models write and voice a short story for each place nearby. Then you lock your phone, walk, and each story plays as you arrive, even in airplane mode.
 
 Built for the DEV "Touch Grass" challenge. Story text comes from Gemma (via Ollama) and audio from Piper, both running on hardware I control. No paid AI APIs, no user accounts.
 
-![Walk screen](docs/walk-n-talk-create-tour.gif)
+![Creating a tour in the Walk & Talk app](docs/walk-n-talk-create-tour.gif)
 
 ## How it works
 
-![Walk screen](docs/architecture.png)
+![Architecture: OpenStreetMap and Wikipedia feed Gemma and Piper, which build a tour pack the iPhone plays offline by GPS](docs/architecture.png)
 
 1. **Pick a spot**: drop a pin or search an address, choose a radius (200 m–2 km) and 3–12 stops.
 2. **Build**: the pipeline finds named places (landmarks, museums, churches, theatres, parks, sports grounds and plazas, with malls only as filler when an area is short of places), ranks them into a loop, has Gemma write a story from those facts only, and has Piper record it. Each story is written to stand on its own, with no references to other stops, since you may reach them in any order or skip some. A 10-stop tour takes about 1.5 minutes on a Mac and about 6 on Railway's CPUs.
